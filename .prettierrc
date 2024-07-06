@@ -3,5 +3,8 @@
   "bracketSameLine": true,
   "bracketSpacing": false,
   "singleQuote": false,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "importOrder": ["^react", "^react-native", "^[a-zA-Z]", "^@?\\w", "^[./]"],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true
 }
