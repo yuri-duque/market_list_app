@@ -1,0 +1,25 @@
+{
+  "name": "@core/ds",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "private": true,
+  "files": [
+    "dist",
+    "src",
+    "@types/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc-watch --noClear"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.74.2",
+    "styled-components": "^6.1.11"
+  },
+  "devDependencies": {
+    "@core/config": "*",
+    "@types/styled-components-react-native": "^5.2.5",
+    "typescript": "^5.5.2"
+  }
+}

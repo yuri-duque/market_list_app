@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "extends": "@react-native",
+  "rules": {
+    "quotes": [
+      2,
+      "backtick",
+      "single"
+    ],
+    "react/react-in-jsx-scope": "off"
+  }
+}

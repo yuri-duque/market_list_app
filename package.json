@@ -1,0 +1,26 @@
+{
+  "name": "gym_app",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "private": true,
+  "scripts": {
+    "dev": "yarn build & npx wurk run dev --parallel",
+    "start": "yarn workspaces foreach --all run start",
+    "start:dev": "yarn dev & yarn start",
+    "build": "yarn workspaces foreach --all run build"
+  },
+  "workspaces": [
+    "app",
+    "packages/core/*",
+    "packages/domains/*"
+  ],
+  "repository": "https://github.com/yuri-duque/gym_app.git",
+  "author": "Yuri Duque <P0658161@portoseguro.com.br>",
+  "license": "ISC",
+  "packageManager": "yarn@4.3.1",
+  "devDependencies": {
+    "@wurk/command-run": "^0.4.0",
+    "tsc-watch": "^6.2.0",
+    "wurk": "^0.4.3"
+  }
+}
