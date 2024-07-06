@@ -1,14 +1,8 @@
 import styled from "styled-components/native";
 
-export const PageStyled = styled.View<{
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-}>`
-  padding-top: ${({top}) => top ?? 0}px;
-  padding-bottom: ${({bottom}) => bottom ?? 0}px;
-  padding-left: ${({left}) => left ?? 0}px;
-  padding-right: ${({right}) => right ?? 0}px;
-  flex: 1;
+export const Container = styled.View<Pick<PageProps, "noPadding">>`
+  width: 100%;
+  height: 100%;
+  padding: ${({noPadding, theme}) =>
+    noPadding ? 0 : theme.sizeVariations.XS}px;
 `;
