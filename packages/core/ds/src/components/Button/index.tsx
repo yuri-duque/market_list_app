@@ -1,10 +1,28 @@
-import {Text} from "react-native";
-import * as S from "./styles";
+import {Typography} from "../Typography";
+import {ButtonBackground, getTextColor} from "./ButtonBackground/styles";
+import {ButtonContainer} from "./ButtonContainer/styles";
+import {ButtonProps} from "./types";
 
-export const Button = () => {
+export const Button = ({
+  text,
+  textProps,
+  onPress,
+  variation,
+  size,
+  disabled,
+}: ButtonProps) => {
   return (
-    <S.ButtonContainer>
-      <Text>Button</Text>
-    </S.ButtonContainer>
+    <ButtonBackground
+      onPress={onPress}
+      variation={variation}
+      disabled={disabled}>
+      <ButtonContainer size={size}>
+        <Typography
+          {...textProps}
+          text={text}
+          color={getTextColor(variation)}
+        />
+      </ButtonContainer>
+    </ButtonBackground>
   );
 };
