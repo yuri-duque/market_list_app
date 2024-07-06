@@ -1,17 +1,15 @@
-import * as S from "./styles";
-import background from "../../../assets/images/background.png";
 import {useEffect} from "react";
-import {useNavigation} from "@react-navigation/native";
-import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {StackRouterParamList} from "../../routes/stack/types";
+
+import background from "../../../assets/images/background.png";
+import {useAppStack} from "../../routes/stack";
+import * as S from "./styles";
 
 export const SplashScreen = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<StackRouterParamList>>();
+  const navigation = useAppStack();
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate("Home");
+      navigation.navigate("AuthStack");
     }, 1000);
   });
 

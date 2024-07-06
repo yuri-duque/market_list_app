@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+
 import {TextProps} from "./types";
 
 type StyledTextProps = Pick<TextProps, "color" | "size" | "weight" | "align">;

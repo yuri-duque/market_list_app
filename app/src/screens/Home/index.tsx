@@ -1,10 +1,9 @@
-import {Text} from "@core/ds";
-import {View} from "react-native";
+import {Button, Page, Text} from "@core/ds";
 
 export const HomeScreen = () => {
   return (
-    <View>
+    <Page>
       <Text text="Home Screen" />
-    </View>
+    </Page>
   );
 };
