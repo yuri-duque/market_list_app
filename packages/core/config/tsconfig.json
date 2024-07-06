@@ -31,5 +31,35 @@
         "noImplicitAny": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
-    }
+        "plugins": [
+            {
+                "name": "@styled/typescript-styled-plugin",
+                "tags": [
+                    "styled",
+                    "css",
+                    "sty"
+                ],
+                "lint": {
+                    "validProperties": [
+                        "text-align-vertical",
+                        "shadow-color",
+                        "shadow-opacity",
+                        "shadow-offset",
+                        "shadow-radius",
+                        "padding-horizontal",
+                        "padding-vertical",
+                        "margin-vertical",
+                        "margin-horizontal",
+                        "tint-color",
+                        "aspect-ratio",
+                        "elevation",
+                        "resize-mode",
+                        "include-font-padding"
+                    ],
+                    "unknownProperties": "error",
+                    "float": "warning"
+                }
+            }
+        ]
+    },
 }
