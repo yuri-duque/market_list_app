@@ -4,7 +4,7 @@ import * as S from "./styles";
 export const Button = () => {
   return (
     <S.ButtonContainer>
-      <Text>Button 2</Text>
+      <Text>Button</Text>
     </S.ButtonContainer>
   );
 };
