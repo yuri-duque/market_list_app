@@ -1,13 +1,14 @@
 export type ThemeType = {
   colors: {
     primary: string;
-    background: string;
     secondary: string;
-    text: string;
-    textSecondary: string;
-    textDark: string;
-    red: string;
-    none: string;
+    success: string;
+    danger: string;
+    warning: string;
+    info: string;
+    light: string;
+    dark: string;
+    white: string;
   };
   fontWeight: {
     light: string;

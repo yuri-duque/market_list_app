@@ -35,14 +35,15 @@ enum SizeVariations {
 
 export const ThemeDefault: ThemeType = {
   colors: {
-    primary: "#D7FF00", // Amarelo neon
-    background: "#FFFFFF", // Preto
-    secondary: "#1C1C1E", // Cinza escuro
-    text: "#000000", // Branco
-    textSecondary: "#8E8E93", // Cinza médio
-    textDark: "#000000", // Texto escuro
-    red: "#FF5A40", // Vermelho
-    none: "transparent", // Transparente
+    primary: "#007bff", // Azul
+    secondary: "#6c757d", // Cinza
+    success: "#28a745", // Verde
+    danger: "#dc3545", // Vermelho
+    warning: "#ffc107", // Amarelo
+    info: "#17a2b8", // Azul claro
+    light: "#f8f9fa", // Cinza claro
+    dark: "#343a40", // Cinza escuro
+    white: "#fff", // Branco
   },
   fontWeight: {
     light: FontWeight.light,
