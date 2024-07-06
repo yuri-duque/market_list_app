@@ -1,6 +1,6 @@
 import {ThemeType} from "../../theme/types";
 
-export type TextProps = {
+export type TypographyProps = {
   text: string;
   color?: keyof ThemeType["colors"];
   size?: keyof ThemeType["fontSizes"];
