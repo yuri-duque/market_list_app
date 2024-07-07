@@ -9,6 +9,15 @@ export type ThemeType = {
     light: string;
     dark: string;
     white: string;
+    background: string;
+  };
+  fontFamily: {
+    roboto: string;
+    robotoBlack: string;
+    robotoBold: string;
+    robotoLight: string;
+    robotoMedium: string;
+    robotoThin: string;
   };
   fontWeight: {
     light: string;
@@ -17,9 +26,6 @@ export type ThemeType = {
     semiBold: string;
     bold: string;
     heavy: string;
-  };
-  fonts: {
-    roobert: string;
   };
   fontSizes: {
     XS: number;
