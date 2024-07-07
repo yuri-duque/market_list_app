@@ -1,16 +1,28 @@
 import styled from "styled-components/native";
+import {ThemeType} from "../../theme/types";
 import {TypographyProps} from "./types";
 
-type StyledTextProps = {
-  color: TypographyProps["color"];
-  size: TypographyProps["size"];
-  weight: TypographyProps["weight"];
-  align: TypographyProps["align"];
+type TextProps = Omit<TypographyProps, "text">;
+
+const getFontFamily = (
+  theme: ThemeType,
+  family?: keyof ThemeType["fontFamily"],
+  italic?: boolean,
+) => {
+  let font = family ? theme.fontFamily[family] : theme.fontFamily.roboto;
+
+  if (italic) {
+    font = `${font}Italic`;
+  }
+  return font;
 };
 
-export const Text = styled.Text<StyledTextProps>`
+export const Text = styled.Text<TextProps>`
   color: ${({theme, color}) =>
-    color ? theme.colors[color] : theme.colors.light};
+    color ? theme.colors[color] : theme.colors.dark};
+
+  font-family: ${({theme, family, italic}) =>
+    getFontFamily(theme, family, italic)};
 
   font-size: ${({theme, size}) =>
     size ? theme.fontSizes[size] : theme.fontSizes.M}px;

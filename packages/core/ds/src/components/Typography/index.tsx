@@ -7,13 +7,18 @@ export const Typography = ({
   size,
   weight,
   align,
+  family,
+  italic,
 }: TypographyProps) => {
   return (
-    console.log("TEXT COLOR", color),
-    (
-      <S.Text color={color} size={size} weight={weight} align={align}>
-        {text}
-      </S.Text>
-    )
+    <S.Text
+      color={color}
+      size={size}
+      weight={weight}
+      align={align}
+      family={family}
+      italic={italic}>
+      {text}
+    </S.Text>
   );
 };
