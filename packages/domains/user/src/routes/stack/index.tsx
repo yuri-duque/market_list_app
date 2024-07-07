@@ -1,14 +1,11 @@
 import React from "react";
-import {SafeAreaView} from "react-native";
-
 import {useNavigation} from "@react-navigation/native";
 import {
   NativeStackNavigationOptions,
   NativeStackNavigationProp,
   createNativeStackNavigator,
 } from "@react-navigation/native-stack";
-
-import {ForgotPasswordScreen, LoginScreen, SigninScreen} from "../../screens";
+import {ForgotPasswordScreen, SigninScreen, SignupScreen} from "../../screens";
 
 type AuthStackParamList = {
   Login: undefined;
@@ -25,8 +22,8 @@ export const AuthStack = () => {
 
   return (
     <Stack.Navigator screenOptions={screenOptions} initialRouteName="Login">
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Signin" component={SigninScreen} />
+      <Stack.Screen name="Login" component={SigninScreen} />
+      <Stack.Screen name="Signin" component={SignupScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     </Stack.Navigator>
   );
