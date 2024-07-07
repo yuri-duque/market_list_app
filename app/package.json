@@ -5,10 +5,11 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "ios:bundle": "bundle install",
+    "ios:open": "open -a Simulator && xcrun simctl boot 'iPhone 15 Pro Max'",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
-    "ios:bundle": "bundle install"
+    "test": "jest"
   },
   "dependencies": {
     "@react-native-firebase/app": "^20.1.0",

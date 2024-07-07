@@ -1,24 +1,48 @@
-import styled, {css} from "styled-components/native";
-import {ButtonProps} from "../types";
+import styled from "styled-components/native";
+import {ThemeType} from "../../../theme/types";
+import {ButtonColors, ButtonVariations} from "../types";
+import {
+  buttonContainedColors,
+  buttonOutilinedColors,
+  textContainedColors,
+  textOutlinedColors,
+} from "./colors";
 
-const buttonSizeVariations = {
-  S: css`
-    padding: 5px 5px;
-  `,
-  M: css`
-    padding: 10px 20px;
-  `,
-  L: css`
-    padding: 36px 20px;
-  `,
+export const getColor = (color: ButtonColors, variation: ButtonVariations) => {
+  if (variation === "outlined") {
+    return buttonOutilinedColors[color];
+  }
+
+  return buttonContainedColors[color];
 };
 
-export const ButtonContainer = styled.View<{
-  size: ButtonProps["size"];
+export const getTextColor = (
+  color?: ButtonColors,
+  variation?: ButtonVariations,
+) => {
+  if (variation === "outlined") {
+    return textOutlinedColors[color ?? "primary"];
+  }
+
+  return textContainedColors[color ?? "primary"];
+};
+
+export const ButtonContainer = styled.TouchableOpacity<{
+  color?: ButtonColors;
+  variation?: ButtonVariations;
 }>`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  ${({size}) => buttonSizeVariations[size ?? "M"]}
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid;
+
+  opacity: ${prop => (prop.disabled ? 0.5 : 1)};
+
+  elevation: 4;
+  shadow-color: ${prop => prop.theme.colors.dark};
+  shadow-offset: 2px 2px;
+  shadow-opacity: 0.5;
+  shadow-radius: 4px;
+
+  ${({color, variation}) =>
+    getColor(color ?? "primary", variation ?? "contained")};
 `;

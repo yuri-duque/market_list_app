@@ -1706,7 +1706,6 @@ __metadata:
   resolution: "@core/config@workspace:packages/core/config"
   dependencies:
     "@styled/typescript-styled-plugin": "npm:^1.0.1"
-    typescript-styled-plugin: "npm:^0.18.3"
   languageName: unknown
   linkType: soft
 
@@ -4751,7 +4750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"emmet@npm:^2.3.0, emmet@npm:^2.4.3":
+"emmet@npm:^2.4.3":
   version: 2.4.7
   resolution: "emmet@npm:2.4.7"
   dependencies:
@@ -10218,19 +10217,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-styled-plugin@npm:^0.18.3":
-  version: 0.18.3
-  resolution: "typescript-styled-plugin@npm:0.18.3"
-  dependencies:
-    typescript-template-language-service-decorator: "npm:^2.3.2"
-    vscode-css-languageservice: "npm:^5.1.4"
-    vscode-emmet-helper: "npm:^2.6.4"
-    vscode-languageserver-textdocument: "npm:^1.0.1"
-    vscode-languageserver-types: "npm:^3.16.0"
-  checksum: 10c0/6cd343a470646966dcec60ebb13d59c80eb8d61b95da6bfec0a7b5cf0fd05d7aa84f33a9fcd379ecb244af385111f745f4503abed4889da1022daa09d4de94f2
-  languageName: node
-  linkType: hard
-
 "typescript-template-language-service-decorator@npm:^2.3.2":
   version: 2.3.2
   resolution: "typescript-template-language-service-decorator@npm:2.3.2"
@@ -10411,18 +10397,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-css-languageservice@npm:^5.1.4":
-  version: 5.4.2
-  resolution: "vscode-css-languageservice@npm:5.4.2"
-  dependencies:
-    vscode-languageserver-textdocument: "npm:^1.0.4"
-    vscode-languageserver-types: "npm:^3.16.0"
-    vscode-nls: "npm:^5.0.0"
-    vscode-uri: "npm:^3.0.3"
-  checksum: 10c0/daeade5f3e036b40471fd5907ff6cd58d5878bb99034361e22d66c67c708136cb7f5acecfb53e652c56f26402b89b1a41b9278ce4ffac1e6f802ab6009820fc1
-  languageName: node
-  linkType: hard
-
 "vscode-css-languageservice@npm:^6.2.11":
   version: 6.3.0
   resolution: "vscode-css-languageservice@npm:6.3.0"
@@ -10435,38 +10409,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-emmet-helper@npm:^2.6.4":
-  version: 2.6.4
-  resolution: "vscode-emmet-helper@npm:2.6.4"
-  dependencies:
-    emmet: "npm:^2.3.0"
-    jsonc-parser: "npm:^2.3.0"
-    vscode-languageserver-textdocument: "npm:^1.0.1"
-    vscode-languageserver-types: "npm:^3.15.1"
-    vscode-nls: "npm:^5.0.0"
-    vscode-uri: "npm:^2.1.2"
-  checksum: 10c0/c81311bcbb11e94dd60ff1f0892a74fcde595d318379e36905c3b5c12ddca27ebfdb035e24c55cd80d9bc3d7a5c94286de4e706ca60d99919dda1b6be49e8c08
-  languageName: node
-  linkType: hard
-
-"vscode-languageserver-textdocument@npm:^1.0.1, vscode-languageserver-textdocument@npm:^1.0.11, vscode-languageserver-textdocument@npm:^1.0.4":
+"vscode-languageserver-textdocument@npm:^1.0.1, vscode-languageserver-textdocument@npm:^1.0.11":
   version: 1.0.11
   resolution: "vscode-languageserver-textdocument@npm:1.0.11"
   checksum: 10c0/1996a38e24571e05aa21dd4f46e0a6849e22301c9a66996762e77d9c6df3622de0bd31cd5742a0c0c47fb9dfd00b310ad08c44d08241873ea571edacd5238da6
   languageName: node
   linkType: hard
 
-"vscode-languageserver-types@npm:3.17.5, vscode-languageserver-types@npm:^3.15.1, vscode-languageserver-types@npm:^3.16.0, vscode-languageserver-types@npm:^3.17.5":
+"vscode-languageserver-types@npm:3.17.5, vscode-languageserver-types@npm:^3.15.1, vscode-languageserver-types@npm:^3.17.5":
   version: 3.17.5
   resolution: "vscode-languageserver-types@npm:3.17.5"
   checksum: 10c0/1e1260de79a2cc8de3e46f2e0182cdc94a7eddab487db5a3bd4ee716f67728e685852707d72c059721ce500447be9a46764a04f0611e94e4321ffa088eef36f8
-  languageName: node
-  linkType: hard
-
-"vscode-nls@npm:^5.0.0":
-  version: 5.2.0
-  resolution: "vscode-nls@npm:5.2.0"
-  checksum: 10c0/dc9e48f58ebbc807f435d351008813a2ea0c9432d51e778bcac9163c0642f929ddb518411ad654e775ce31e24d6acfa8fb7db8893c05b42c2019894e08b050f9
   languageName: node
   linkType: hard
 
@@ -10477,7 +10430,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-uri@npm:^3.0.3, vscode-uri@npm:^3.0.8":
+"vscode-uri@npm:^3.0.8":
   version: 3.0.8
   resolution: "vscode-uri@npm:3.0.8"
   checksum: 10c0/f7f217f526bf109589969fe6e66b71e70b937de1385a1d7bb577ca3ee7c5e820d3856a86e9ff2fa9b7a0bc56a3dd8c3a9a557d3fedd7df414bc618d5e6b567f9

@@ -1,28 +1,30 @@
 import {Typography} from "../Typography";
-import {ButtonBackground, getTextColor} from "./ButtonBackground/styles";
-import {ButtonContainer} from "./ButtonContainer/styles";
+import {ButtonContainer, getTextColor} from "./ButtonContainer/styles";
+import {ButtonSize} from "./ButtonSize/styles";
 import {ButtonProps} from "./types";
 
 export const Button = ({
   text,
   textProps,
   onPress,
+  color,
   variation,
   size,
   disabled,
 }: ButtonProps) => {
   return (
-    <ButtonBackground
+    <ButtonContainer
       onPress={onPress}
+      color={color}
       variation={variation}
       disabled={disabled}>
-      <ButtonContainer size={size}>
+      <ButtonSize size={size}>
         <Typography
           {...textProps}
           text={text}
-          color={getTextColor(variation)}
+          color={getTextColor(color, variation)}
         />
-      </ButtonContainer>
-    </ButtonBackground>
+      </ButtonSize>
+    </ButtonContainer>
   );
 };
