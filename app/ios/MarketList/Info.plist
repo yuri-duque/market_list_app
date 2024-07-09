@@ -61,6 +61,8 @@
 		<string>Roboto-ThinItalic.ttf</string>
 		<string>Roboto-Regular.ttf</string>
 		<string>Roboto-RegularItalic.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
 	</array>
 </dict>
 </plist>
