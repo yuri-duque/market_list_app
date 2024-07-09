@@ -19,9 +19,11 @@
     "@react-native-firebase/firestore": "^20.1.0",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.10.0",
+    "formik": "^2.4.6",
     "react": "18.2.0",
     "react-native": "0.74.2",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@core/config": "*",
