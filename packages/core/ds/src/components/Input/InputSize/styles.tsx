@@ -3,18 +3,20 @@ import {InputProps} from "../types";
 
 const inputSizeVariations = {
   S: css`
-    padding: 4px 10px;
+    height: 40px;
   `,
   M: css`
-    padding: 8px 10px;
+    height: 48px;
   `,
   L: css`
-    padding: 16px 10px;
+    height: 54px;
   `,
 };
 
 export const InputSize = styled.View<{
   size: InputProps["size"];
 }>`
-  ${({size}) => inputSizeVariations[size ?? "M"]}
+  flex-direction: row;
+  padding: 4px 12px;
+  height: 48px;
 `;

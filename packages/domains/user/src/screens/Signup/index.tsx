@@ -1,13 +1,20 @@
-import {ScrollView, View} from "react-native";
+import {FlatList, ScrollView, SectionList, View} from "react-native";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {Button, Input, Page, Spacing, ThemeProvider} from "@core/ds";
+import {Button, Input, Page, Spacing} from "@core/ds";
 import {useAuthStack} from "../../routes";
 import * as S from "./styles";
 import {SignupFormValues} from "./types";
 
 export const SignupScreen = () => {
   const navigation = useAuthStack();
+
+  const fildNames = {
+    username: "username",
+    email: "email",
+    password: "password",
+    confirmPassword: "confirmPassword",
+  };
 
   const initialValues: SignupFormValues = {
     username: "",
@@ -38,58 +45,55 @@ export const SignupScreen = () => {
     navigation.navigate("Signin");
   };
 
-  const {values, errors, handleChange, handleSubmit} = useFormik({
+  const {values, errors, setFieldValue, handleSubmit} = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
+    validateOnChange: false,
   });
 
   return (
-    <ThemeProvider>
-      <Page>
-        <ScrollView>
-          <S.Container>
-            <S.InputContainer>
-              <Spacing size="M" />
-              <Input
-                value={values.username}
-                error={errors.username}
-                onChangeText={() => handleChange("username")}
-                placeholder=""
-                label="Username"
-              />
-              <Input
-                value={values.email}
-                error={errors.email}
-                onChangeText={() => handleChange("email")}
-                label="Email"
-              />
-              <Input
-                value={values.password}
-                error={errors.password}
-                onChangeText={() => handleChange("password")}
-                label="Password"
-                secureTextEntry
-              />
-              <Input
-                value={values.confirmPassword}
-                error={errors.confirmPassword}
-                onChangeText={() => handleChange("confirmPassword")}
-                label="Password"
-                secureTextEntry
-              />
-              <Spacing size="XXL" />
-            </S.InputContainer>
-            <View>
-              <Button
-                text="Register"
-                onPress={handleSubmit}
-                textProps={{weight: "semiBold"}}
-              />
-            </View>
-          </S.Container>
-        </ScrollView>
-      </Page>
-    </ThemeProvider>
+    <Page noSafeArea>
+      <ScrollView>
+        <S.Container>
+          <S.InputsContainer>
+            <Input
+              value={values.username}
+              error={errors.username}
+              onChangeText={value => setFieldValue(fildNames.username, value)}
+              label="Username"
+            />
+            <Input
+              value={values.email}
+              error={errors.email}
+              onChangeText={value => setFieldValue(fildNames.email, value)}
+              label="Email"
+            />
+            <Input
+              value={values.password}
+              error={errors.password}
+              onChangeText={value => setFieldValue(fildNames.password, value)}
+              label="Password"
+            />
+            <Input
+              value={values.confirmPassword}
+              error={errors.confirmPassword}
+              onChangeText={value =>
+                setFieldValue(fildNames.confirmPassword, value)
+              }
+              label="Configm password"
+            />
+            <Spacing size="XXL" />
+          </S.InputsContainer>
+          <View style={{flex: 1}}>
+            <Button
+              text="Register"
+              onPress={handleSubmit}
+              textProps={{weight: "semiBold"}}
+            />
+          </View>
+        </S.Container>
+      </ScrollView>
+    </Page>
   );
 };

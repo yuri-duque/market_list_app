@@ -16,7 +16,6 @@ export type InputTypes = "default" | "numeric" | "password";
 export type InputProps = {
   value: string;
   onChangeText: (text: string) => void;
-  placeholder?: string;
   variation?: InputVariations;
   size?: InputSizeVariations;
   disabled?: boolean;

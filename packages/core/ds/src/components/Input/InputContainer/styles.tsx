@@ -26,7 +26,6 @@ export const InputContainer = styled.View<{
   variation?: InputVariations;
   disabled?: InputProps["disabled"];
 }>`
-  width: 100%;
   border: 1px solid;
   background-color: #fff;
   border-radius: 8px;

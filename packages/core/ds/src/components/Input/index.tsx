@@ -1,8 +1,6 @@
 import {useState} from "react";
 import {KeyboardTypeOptions, View} from "react-native";
-import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import {Label} from "../Label";
-import {Spacing} from "../Spacing";
 import {Typography} from "../Typography";
 import {InputContainer, getPlaceholderTextColor} from "./InputContainer/styles";
 import {InputSize} from "./InputSize/styles";
@@ -12,7 +10,6 @@ import {InputProps} from "./types";
 export const Input = ({
   value,
   onChangeText,
-  placeholder,
   variation,
   size,
   disabled,
@@ -27,36 +24,40 @@ export const Input = ({
 
   return (
     <View>
-      {label && (
-        <S.LabelContainer>
-          <Label text={label} required={required} />
-          <Spacing size="XXXS" />
-        </S.LabelContainer>
-      )}
-
       <InputContainer variation={variation} disabled={disabled}>
         <InputSize size={size}>
-          <S.Input
-            value={value}
-            onChangeText={onChangeText}
-            placeholder={placeholder}
-            secureTextEntry={hideText}
-            keyboardType={type as KeyboardTypeOptions}
-            returnKeyType={returnKeyType}
-            onSubmitEditing={onSubmitEditing}
-            placeholderTextColor={getPlaceholderTextColor(variation)}
-          />
-          <MaterialIcon
-            name={"chevron-left"}
-            size={20}
-            onPress={() => setHideText(!hideText)}
-          />
+          <S.InputContent>
+            <S.InputLabel>
+              {value && label && (
+                <Label text={label} required={required} size="S" />
+              )}
+
+              <S.Input
+                value={value}
+                onChangeText={onChangeText}
+                placeholder={label}
+                secureTextEntry={hideText}
+                keyboardType={type as KeyboardTypeOptions}
+                returnKeyType={returnKeyType}
+                onSubmitEditing={onSubmitEditing}
+                placeholderTextColor={getPlaceholderTextColor(variation)}
+              />
+            </S.InputLabel>
+
+            {type === "password" && (
+              <S.Icon
+                name={hideText ? "eye-off" : "eye"}
+                size={20}
+                onPress={() => setHideText(!hideText)}
+              />
+            )}
+          </S.InputContent>
         </InputSize>
       </InputContainer>
 
       {error && (
         <S.ErrorContainer>
-          <Typography text={error} size="XS" color="danger" />
+          <Typography text={error} size="S" color="danger" />
         </S.ErrorContainer>
       )}
     </View>

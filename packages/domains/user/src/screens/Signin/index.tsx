@@ -28,12 +28,12 @@ export const SigninScreen = () => {
               size="L"
             />
           }>
-          <Input value={email} onChangeText={setEmail} placeholder="Email" />
+          <Input value={email} onChangeText={setEmail} label="Email" />
           <Spacing size="S" />
           <Input
             value={password}
             onChangeText={setPassword}
-            placeholder="Password"
+            label="Password"
             type="password"
           />
           <S.ButtonsContainer>

@@ -1,14 +1,17 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  flex: 1;
-  flex-direction: column;
   justify-content: space-between;
+  background-color: red;
 `;
 
-export const InputContainer = styled.View`
-  flex: 1;
+export const InputsContainer = styled.View`
   flex-direction: column;
-  justify-content: space-between;
   gap: ${({theme}) => theme.sizeVariations.S}px;
+`;
+
+export const ButtonContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  background-color: green;
 `;
