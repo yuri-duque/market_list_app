@@ -1,14 +1,14 @@
-import {ThemeType} from "../../theme/types";
+import {AppThemeType} from "../../theme/types";
 import {TypographyProps} from "../Typography/types";
 
 type TextProps = Omit<TypographyProps, "text">;
 
 export type ButtonVariations = "contained" | "outlined";
 
-export type ButtonColors = keyof ThemeType["colors"];
+export type ButtonColors = keyof AppThemeType["colors"];
 
 export type ButtonSizeVariations = keyof Pick<
-  ThemeType["sizeVariations"],
+  AppThemeType["sizeVariations"],
   "S" | "M" | "L"
 >;
 

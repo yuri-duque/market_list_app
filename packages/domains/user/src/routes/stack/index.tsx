@@ -8,8 +8,8 @@ import {
 import {ForgotPasswordScreen, SigninScreen, SignupScreen} from "../../screens";
 
 type AuthStackParamList = {
-  Login: undefined;
   Signin: undefined;
+  Signup: undefined;
   ForgotPassword: undefined;
 };
 
@@ -21,13 +21,17 @@ export const AuthStack = () => {
   };
 
   return (
-    <Stack.Navigator screenOptions={screenOptions} initialRouteName="Login">
-      <Stack.Screen name="Login" component={SigninScreen} />
-      <Stack.Screen name="Signin" component={SignupScreen} />
+    <Stack.Navigator screenOptions={screenOptions} initialRouteName="Signin">
+      <Stack.Screen name="Signin" component={SigninScreen} />
+      <Stack.Screen
+        name="Signup"
+        component={SignupScreen}
+        options={{title: "Register", headerShown: true}}
+      />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     </Stack.Navigator>
   );
 };
 
-export const useAppStack = () =>
+export const useAuthStack = () =>
   useNavigation<NativeStackNavigationProp<AuthStackParamList>>();

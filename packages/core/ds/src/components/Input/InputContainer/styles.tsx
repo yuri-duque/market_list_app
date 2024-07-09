@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components/native";
-import {ThemeDefault} from "../../../theme/theme";
+import {AppTheme} from "../../../theme/theme";
 import {InputProps, InputVariations} from "../types";
 
 const inputVariations = {
@@ -15,8 +15,8 @@ const inputVariations = {
 
 export const getPlaceholderTextColor = (variation?: InputVariations) => {
   const variationTexts = {
-    primary: ThemeDefault.colors.secondary,
-    danger: ThemeDefault.colors.danger,
+    primary: AppTheme.colors.secondary,
+    danger: AppTheme.colors.danger,
   };
 
   return variationTexts[variation ?? "primary"];

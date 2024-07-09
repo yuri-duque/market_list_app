@@ -1,4 +1,4 @@
-export type ThemeType = {
+export type AppThemeType = {
   colors: {
     primary: string;
     secondary: string;
@@ -37,6 +37,7 @@ export type ThemeType = {
   };
   sizeVariations: {
     NONE: number;
+    XXXS: number;
     XXS: number;
     XS: number;
     S: number;

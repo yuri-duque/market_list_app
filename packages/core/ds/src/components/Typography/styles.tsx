@@ -1,12 +1,12 @@
 import styled from "styled-components/native";
-import {ThemeType} from "../../theme/types";
+import {AppThemeType} from "../../theme/types";
 import {TypographyProps} from "./types";
 
 type TextProps = Omit<TypographyProps, "text">;
 
 const getFontFamily = (
-  theme: ThemeType,
-  family?: keyof ThemeType["fontFamily"],
+  theme: AppThemeType,
+  family?: keyof AppThemeType["fontFamily"],
   italic?: boolean,
 ) => {
   let font = family ? theme.fontFamily[family] : theme.fontFamily.roboto;

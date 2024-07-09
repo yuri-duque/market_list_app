@@ -1,13 +1,13 @@
 import {KeyboardTypeOptions, ReturnKeyTypeOptions} from "react-native";
-import {ThemeType} from "../../theme/types";
+import {AppThemeType} from "../../theme/types";
 
 export type InputVariations = keyof Pick<
-  ThemeType["colors"],
+  AppThemeType["colors"],
   "primary" | "danger"
 >;
 
 export type InputSizeVariations = keyof Pick<
-  ThemeType["sizeVariations"],
+  AppThemeType["sizeVariations"],
   "S" | "M" | "L"
 >;
 

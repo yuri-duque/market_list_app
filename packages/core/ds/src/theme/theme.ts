@@ -1,6 +1,6 @@
-import {ThemeType} from "./types";
+import {AppThemeType} from "./types";
 
-export const ThemeDefault: ThemeType = {
+export const AppTheme: AppThemeType = {
   colors: {
     primary: "#007bff", // Azul
     secondary: "#6c757d", // Cinza
@@ -32,13 +32,14 @@ export const ThemeDefault: ThemeType = {
   fontSizes: {
     XS: 12,
     S: 16,
-    M: 24,
-    L: 32,
-    XL: 40,
-    XXL: 56,
+    M: 20,
+    L: 24,
+    XL: 28,
+    XXL: 32,
   },
   sizeVariations: {
     NONE: 0,
+    XXXS: 2,
     XXS: 4,
     XS: 8,
     S: 12,

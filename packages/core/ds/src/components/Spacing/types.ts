@@ -1,5 +1,5 @@
-import {ThemeType} from "../../theme/types";
+import {AppThemeType} from "../../theme/types";
 
 export type SpacingProps = {
-  size: keyof ThemeType["sizeVariations"];
+  size: keyof AppThemeType["sizeVariations"];
 };

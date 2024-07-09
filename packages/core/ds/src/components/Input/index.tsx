@@ -1,5 +1,6 @@
 import {View} from "react-native";
 import {Label} from "../Label";
+import {Spacing} from "../Spacing";
 import {Typography} from "../Typography";
 import {InputContainer, getPlaceholderTextColor} from "./InputContainer/styles";
 import {InputSize} from "./InputSize/styles";
@@ -25,7 +26,8 @@ export const Input = ({
     <View>
       {label && (
         <S.LabelContainer>
-          <Label text="test" required={required} />
+          <Label text={label} required={required} />
+          <Spacing size="XXXS" />
         </S.LabelContainer>
       )}
 

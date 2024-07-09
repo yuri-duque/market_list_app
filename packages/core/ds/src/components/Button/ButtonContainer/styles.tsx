@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import {ThemeType} from "../../../theme/types";
 import {ButtonColors, ButtonVariations} from "../types";
 import {
   buttonContainedColors,

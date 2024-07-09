@@ -1,11 +1,19 @@
 import {useState} from "react";
-import {Text} from "react-native";
 import {Button, Card, Input, Page, Spacing, Typography} from "@core/ds";
+import {useAuthStack} from "../../routes";
 import * as S from "./styles";
 
 export const SigninScreen = () => {
+  const navigation = useAuthStack();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onLogin = () => {};
+
+  const goToRegister = () => {
+    navigation.navigate("Signup");
+  };
 
   return (
     <Page>
@@ -13,14 +21,14 @@ export const SigninScreen = () => {
         <Card
           header={
             <Typography
-              text="Sign in"
+              text="Login"
               weight="bold"
               align="center"
               color="secondary"
+              size="L"
             />
           }>
-          <Spacing size="M" />
-          <Input value={email} onChangeText={setEmail} placeholder="Username" />
+          <Input value={email} onChangeText={setEmail} placeholder="Email" keyboardType={"email-address"}/>
           <Spacing size="S" />
           <Input
             value={password}
@@ -28,19 +36,19 @@ export const SigninScreen = () => {
             placeholder="Password"
             secureTextEntry
           />
-          <Spacing size="M" />
+          <Spacing size="XXL" />
           <Button
-            text="Sign in"
-            onPress={() => {}}
+            text="Login"
+            onPress={onLogin}
             textProps={{weight: "semiBold"}}
           />
           <Spacing size="S" />
           <Button
-            text="Sign up"
-            onPress={() => {}}
+            text="Register"
+            onPress={goToRegister}
             color="secondary"
             variation="outlined"
-            textProps={{weight: "semiBold"}}
+            textProps={{weight: "semiBold", size: "M"}}
           />
         </Card>
       </S.Container>

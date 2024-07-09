@@ -1,12 +1,12 @@
 import React from "react";
-import {ThemeType} from "../../theme/types";
+import {AppThemeType} from "../../theme/types";
 
 export type TypographyProps = {
   text: string | React.ReactNode;
-  color?: keyof ThemeType["colors"];
-  size?: keyof ThemeType["fontSizes"];
-  weight?: keyof ThemeType["fontWeight"];
+  color?: keyof AppThemeType["colors"];
+  size?: keyof AppThemeType["fontSizes"];
+  weight?: keyof AppThemeType["fontWeight"];
   align?: "left" | "center" | "right";
-  family?: keyof ThemeType["fontFamily"];
+  family?: keyof AppThemeType["fontFamily"];
   italic?: boolean;
 };

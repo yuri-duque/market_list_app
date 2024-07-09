@@ -1,5 +1,5 @@
 import {css} from "styled-components/native";
-import {ThemeType} from "../../../theme/types";
+import {AppThemeType} from "../../../theme/types";
 import {ButtonColors} from "../types";
 
 export const buttonOutilinedColors = {
@@ -83,7 +83,7 @@ export const buttonContainedColors = {
 };
 
 export const textContainedColors: {
-  [key in ButtonColors]: keyof ThemeType["colors"];
+  [key in ButtonColors]: keyof AppThemeType["colors"];
 } = {
   primary: "white",
   danger: "white",
@@ -98,7 +98,7 @@ export const textContainedColors: {
 };
 
 export const textOutlinedColors: {
-  [key in ButtonColors]: keyof ThemeType["colors"];
+  [key in ButtonColors]: keyof AppThemeType["colors"];
 } = {
   primary: "primary",
   danger: "danger",
