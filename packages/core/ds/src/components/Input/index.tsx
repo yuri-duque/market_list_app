@@ -1,4 +1,6 @@
-import {View} from "react-native";
+import {useState} from "react";
+import {KeyboardTypeOptions, View} from "react-native";
+import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import {Label} from "../Label";
 import {Spacing} from "../Spacing";
 import {Typography} from "../Typography";
@@ -17,11 +19,12 @@ export const Input = ({
   label,
   required,
   error,
-  secureTextEntry,
-  keyboardType,
+  type,
   returnKeyType,
   onSubmitEditing,
 }: InputProps) => {
+  const [hideText, setHideText] = useState(type === "password");
+
   return (
     <View>
       {label && (
@@ -37,11 +40,16 @@ export const Input = ({
             value={value}
             onChangeText={onChangeText}
             placeholder={placeholder}
-            secureTextEntry={secureTextEntry}
-            keyboardType={keyboardType}
+            secureTextEntry={hideText}
+            keyboardType={type as KeyboardTypeOptions}
             returnKeyType={returnKeyType}
             onSubmitEditing={onSubmitEditing}
             placeholderTextColor={getPlaceholderTextColor(variation)}
+          />
+          <MaterialIcon
+            name={"chevron-left"}
+            size={20}
+            onPress={() => setHideText(!hideText)}
           />
         </InputSize>
       </InputContainer>

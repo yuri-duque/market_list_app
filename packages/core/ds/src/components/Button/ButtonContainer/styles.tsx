@@ -12,7 +12,7 @@ export const getColor = (color: ButtonColors, variation: ButtonVariations) => {
     return buttonOutilinedColors[color];
   }
 
-  return buttonContainedColors[color];
+  return buttonContainedColors[color] ?? buttonContainedColors.primary;
 };
 
 export const getTextColor = (
@@ -30,7 +30,7 @@ export const ButtonContainer = styled.TouchableOpacity<{
   color?: ButtonColors;
   variation?: ButtonVariations;
 }>`
-  width: 100%;
+  flex: 1;
   border-radius: 8px;
   border: 1px solid;
 

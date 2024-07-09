@@ -28,28 +28,28 @@ export const SigninScreen = () => {
               size="L"
             />
           }>
-          <Input value={email} onChangeText={setEmail} placeholder="Email" keyboardType={"email-address"}/>
+          <Input value={email} onChangeText={setEmail} placeholder="Email" />
           <Spacing size="S" />
           <Input
             value={password}
             onChangeText={setPassword}
             placeholder="Password"
-            secureTextEntry
+            type="password"
           />
-          <Spacing size="XXL" />
-          <Button
-            text="Login"
-            onPress={onLogin}
-            textProps={{weight: "semiBold"}}
-          />
-          <Spacing size="S" />
-          <Button
-            text="Register"
-            onPress={goToRegister}
-            color="secondary"
-            variation="outlined"
-            textProps={{weight: "semiBold", size: "M"}}
-          />
+          <S.ButtonsContainer>
+            <Button
+              text="Register"
+              onPress={goToRegister}
+              color="primary"
+              variation="outlined"
+              textProps={{weight: "semiBold", size: "M"}}
+            />
+            <Button
+              text="Login"
+              onPress={onLogin}
+              textProps={{weight: "semiBold"}}
+            />
+          </S.ButtonsContainer>
         </Card>
       </S.Container>
     </Page>

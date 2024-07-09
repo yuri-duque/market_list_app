@@ -10,5 +10,5 @@ export const InputContainer = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  gap: ${({theme}) => theme.sizeVariations.S};
+  gap: ${({theme}) => theme.sizeVariations.S}px;
 `;

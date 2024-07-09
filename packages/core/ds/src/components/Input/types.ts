@@ -11,6 +11,8 @@ export type InputSizeVariations = keyof Pick<
   "S" | "M" | "L"
 >;
 
+export type InputTypes = "default" | "numeric" | "password";
+
 export type InputProps = {
   value: string;
   onChangeText: (text: string) => void;
@@ -21,9 +23,8 @@ export type InputProps = {
   label?: string;
   required?: boolean;
   error?: string;
+  type?: InputTypes;
 
-  keyboardType?: KeyboardTypeOptions;
-  secureTextEntry?: boolean;
   returnKeyType?: ReturnKeyTypeOptions;
   onSubmitEditing?: () => void;
 };

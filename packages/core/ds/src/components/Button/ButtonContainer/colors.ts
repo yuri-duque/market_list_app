@@ -19,27 +19,6 @@ export const buttonOutilinedColors = {
     background-color: ${({theme}) => theme.colors.white};
     border-color: ${({theme}) => theme.colors.danger};
   `,
-  warning: css`
-    background-color: ${({theme}) => theme.colors.white};
-    border-color: ${({theme}) => theme.colors.warning};
-  `,
-  info: css`
-    background-color: ${({theme}) => theme.colors.white};
-    border-color: ${({theme}) => theme.colors.info};
-  `,
-  light: css`
-    background-color: ${({theme}) => theme.colors.white};
-    border-color: ${({theme}) => theme.colors.light};
-  `,
-  dark: css`
-    background-color: ${({theme}) => theme.colors.white};
-    border-color: ${({theme}) => theme.colors.dark};
-  `,
-  white: css`
-    background-color: ${({theme}) => theme.colors.white};
-    border-color: ${({theme}) => theme.colors.white};
-  `,
-  background: css``,
 };
 
 export const buttonContainedColors = {
@@ -59,27 +38,25 @@ export const buttonContainedColors = {
     background-color: ${({theme}) => theme.colors.danger};
     border-color: ${({theme}) => theme.colors.danger};
   `,
-  warning: css`
-    background-color: ${({theme}) => theme.colors.warning};
-    border-color: ${({theme}) => theme.colors.warning};
-  `,
-  info: css`
-    background-color: ${({theme}) => theme.colors.info};
-    border-color: ${({theme}) => theme.colors.info};
-  `,
-  light: css`
-    background-color: ${({theme}) => theme.colors.light};
-    border-color: ${({theme}) => theme.colors.light};
-  `,
-  dark: css`
-    background-color: ${({theme}) => theme.colors.dark};
-    border-color: ${({theme}) => theme.colors.dark};
-  `,
-  white: css`
+};
+
+const buttonLinkColors = {
+  primary: css`
     background-color: ${({theme}) => theme.colors.white};
     border-color: ${({theme}) => theme.colors.white};
   `,
-  background: css``,
+  secondary: css`
+    background-color: ${({theme}) => theme.colors.white};
+    border-color: ${({theme}) => theme.colors.white};
+  `,
+  success: css`
+    background-color: ${({theme}) => theme.colors.white};
+    border-color: ${({theme}) => theme.colors.white};
+  `,
+  danger: css`
+    background-color: ${({theme}) => theme.colors.white};
+    border-color: ${({theme}) => theme.colors.white};
+  `,
 };
 
 export const textContainedColors: {
@@ -89,12 +66,6 @@ export const textContainedColors: {
   danger: "white",
   secondary: "white",
   success: "white",
-  warning: "white",
-  info: "white",
-  light: "dark",
-  dark: "white",
-  white: "dark",
-  background: "dark",
 };
 
 export const textOutlinedColors: {
@@ -104,10 +75,4 @@ export const textOutlinedColors: {
   danger: "danger",
   secondary: "secondary",
   success: "success",
-  warning: "warning",
-  info: "info",
-  light: "light",
-  dark: "dark",
-  white: "white",
-  background: "background",
 };

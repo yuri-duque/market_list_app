@@ -5,7 +5,10 @@ type TextProps = Omit<TypographyProps, "text">;
 
 export type ButtonVariations = "contained" | "outlined";
 
-export type ButtonColors = keyof AppThemeType["colors"];
+export type ButtonColors = keyof Pick<
+  AppThemeType["colors"],
+  "primary" | "secondary" | "success" | "danger"
+>;
 
 export type ButtonSizeVariations = keyof Pick<
   AppThemeType["sizeVariations"],

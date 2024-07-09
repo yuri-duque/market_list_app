@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 export const Input = styled.TextInput`
   padding: 0px;
   margin: 0px;
+  font-family: ${({theme}) => theme.fontFamily.robotoMedium};
 `;
 
 export const LabelContainer = styled.View`
