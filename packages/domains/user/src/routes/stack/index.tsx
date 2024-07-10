@@ -18,6 +18,7 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 export const AuthStack = () => {
   const screenOptions: NativeStackNavigationOptions = {
     headerShown: false,
+    headerTitleAlign: "center",
   };
 
   return (
@@ -28,7 +29,11 @@ export const AuthStack = () => {
         component={SignupScreen}
         options={{title: "Register", headerShown: true}}
       />
-      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={{title: "Forgot Password", headerShown: true}}
+      />
     </Stack.Navigator>
   );
 };

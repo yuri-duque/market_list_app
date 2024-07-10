@@ -1714,6 +1714,7 @@ __metadata:
   resolution: "@core/ds@workspace:packages/core/ds"
   dependencies:
     "@core/config": "npm:*"
+    "@react-navigation/elements": "npm:^1.3.30"
     "@types/react-native-vector-icons": "npm:^6.4.18"
     "@types/styled-components-react-native": "npm:^5.2.5"
     react: "npm:18.2.0"

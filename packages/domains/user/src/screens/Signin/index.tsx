@@ -1,5 +1,6 @@
 import {useState} from "react";
-import {Button, Card, Input, Page, Spacing, Typography} from "@core/ds";
+import {View} from "react-native";
+import {Button, Card, Input, Page, Typography} from "@core/ds";
 import {useAuthStack} from "../../routes";
 import * as S from "./styles";
 
@@ -15,6 +16,10 @@ export const SigninScreen = () => {
     navigation.navigate("Signup");
   };
 
+  const goToForgotPassword = () => {
+    navigation.navigate("ForgotPassword");
+  };
+
   return (
     <Page>
       <S.Container>
@@ -28,27 +33,42 @@ export const SigninScreen = () => {
               size="L"
             />
           }>
-          <Input value={email} onChangeText={setEmail} label="Email" />
-          <Spacing size="S" />
-          <Input
-            value={password}
-            onChangeText={setPassword}
-            label="Password"
-            type="password"
-          />
-          <S.ButtonsContainer>
-            <Button
-              text="Register"
-              onPress={goToRegister}
+          <S.InputsGroup>
+            <Input value={email} onChangeText={setEmail} label="Email" />
+            <Input
+              value={password}
+              onChangeText={setPassword}
+              label="Password"
+              type="password"
+            />
+          </S.InputsGroup>
+
+          <S.ForgotPasswordContainer onPress={goToForgotPassword}>
+            <Typography
+              text="forgot password"
+              align="right"
+              size="S"
               color="primary"
-              variation="outlined"
-              textProps={{weight: "semiBold", size: "M"}}
             />
-            <Button
-              text="Login"
-              onPress={onLogin}
-              textProps={{weight: "semiBold"}}
-            />
+          </S.ForgotPasswordContainer>
+
+          <S.ButtonsContainer>
+            <S.ButtonContainer>
+              <Button
+                text="Register"
+                onPress={goToRegister}
+                color="primary"
+                variation="outlined"
+                textProps={{weight: "semiBold", size: "M"}}
+              />
+            </S.ButtonContainer>
+            <S.ButtonContainer>
+              <Button
+                text="Login"
+                onPress={onLogin}
+                textProps={{weight: "semiBold"}}
+              />
+            </S.ButtonContainer>
           </S.ButtonsContainer>
         </Card>
       </S.Container>

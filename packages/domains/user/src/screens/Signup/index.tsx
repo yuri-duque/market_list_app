@@ -1,4 +1,3 @@
-import {FlatList, ScrollView, SectionList, View} from "react-native";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import {Button, Input, Page, Spacing} from "@core/ds";
@@ -52,48 +51,50 @@ export const SignupScreen = () => {
     validateOnChange: false,
   });
 
+  const Footer = () => {
+    return (
+      <Button
+        text="Register"
+        onPress={handleSubmit}
+        textProps={{weight: "semiBold"}}
+        size="L"
+      />
+    );
+  };
+
   return (
-    <Page noSafeArea>
-      <ScrollView>
-        <S.Container>
-          <S.InputsContainer>
-            <Input
-              value={values.username}
-              error={errors.username}
-              onChangeText={value => setFieldValue(fildNames.username, value)}
-              label="Username"
-            />
-            <Input
-              value={values.email}
-              error={errors.email}
-              onChangeText={value => setFieldValue(fildNames.email, value)}
-              label="Email"
-            />
-            <Input
-              value={values.password}
-              error={errors.password}
-              onChangeText={value => setFieldValue(fildNames.password, value)}
-              label="Password"
-            />
-            <Input
-              value={values.confirmPassword}
-              error={errors.confirmPassword}
-              onChangeText={value =>
-                setFieldValue(fildNames.confirmPassword, value)
-              }
-              label="Configm password"
-            />
-            <Spacing size="XXL" />
-          </S.InputsContainer>
-          <View style={{flex: 1}}>
-            <Button
-              text="Register"
-              onPress={handleSubmit}
-              textProps={{weight: "semiBold"}}
-            />
-          </View>
-        </S.Container>
-      </ScrollView>
+    <Page noSafeArea footer={<Footer />}>
+      <S.Container>
+        <S.InputsContainer>
+          <Input
+            value={values.username}
+            error={errors.username}
+            onChangeText={value => setFieldValue(fildNames.username, value)}
+            label="Username"
+          />
+          <Input
+            value={values.email}
+            error={errors.email}
+            onChangeText={value => setFieldValue(fildNames.email, value)}
+            label="Email"
+          />
+          <Input
+            value={values.password}
+            error={errors.password}
+            onChangeText={value => setFieldValue(fildNames.password, value)}
+            label="Password"
+          />
+          <Input
+            value={values.confirmPassword}
+            error={errors.confirmPassword}
+            onChangeText={value =>
+              setFieldValue(fildNames.confirmPassword, value)
+            }
+            label="Configm password"
+          />
+          <Spacing size="XXL" />
+        </S.InputsContainer>
+      </S.Container>
     </Page>
   );
 };

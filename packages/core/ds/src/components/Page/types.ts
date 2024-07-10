@@ -1,5 +1,8 @@
-type PageProps = {
-  children: React.ReactNode;
+import {PageSafeAreaProps} from "./SaveArea";
+
+export type PageProps = {
+  noSafeArea?: PageSafeAreaProps["noSafeArea"];
   noPadding?: boolean;
-  noSafeArea?: boolean;
+  children: React.ReactNode;
+  footer?: React.ReactNode;
 };
