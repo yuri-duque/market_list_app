@@ -13,18 +13,18 @@ export const Button = ({
   disabled,
 }: ButtonProps) => {
   return (
-    <ButtonContainer
-      onPress={onPress}
-      color={color}
-      variation={variation}
-      disabled={disabled}>
-      <ButtonSize size={size}>
+    <ButtonSize size={size}>
+      <ButtonContainer
+        onPress={onPress}
+        color={color}
+        variation={variation}
+        disabled={disabled}>
         <Typography
           {...textProps}
           text={text}
           color={getTextColor(color, variation)}
         />
-      </ButtonSize>
-    </ButtonContainer>
+      </ButtonContainer>
+    </ButtonSize>
   );
 };

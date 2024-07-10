@@ -1,11 +1,11 @@
 import styled from "styled-components/native";
-import {ButtonColors, ButtonVariations} from "../types";
 import {
   buttonContainedColors,
   buttonOutilinedColors,
   textContainedColors,
   textOutlinedColors,
 } from "./colors";
+import {ButtonColors, ButtonVariations, ButtoncontainerProps} from "./types";
 
 export const getColor = (color: ButtonColors, variation: ButtonVariations) => {
   if (variation === "outlined") {
@@ -26,11 +26,12 @@ export const getTextColor = (
   return textContainedColors[color ?? "primary"];
 };
 
-export const ButtonContainer = styled.TouchableOpacity<{
-  color?: ButtonColors;
-  variation?: ButtonVariations;
-}>`
+export const ButtonContainer = styled.TouchableOpacity<ButtoncontainerProps>`
   flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 8px;
   border: 1px solid;
 

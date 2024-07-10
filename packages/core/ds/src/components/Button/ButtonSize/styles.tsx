@@ -1,24 +1,18 @@
 import styled, {css} from "styled-components/native";
-import {ButtonProps} from "../types";
+import {ButtonSizeProps} from "./types";
 
 const buttonSizeVariations = {
   S: css`
-    padding: 5px 5px;
+    height: 40px;
   `,
   M: css`
-    padding: 10px 20px;
+    height: 48px;
   `,
   L: css`
-    padding: 36px 20px;
+    height: 56px;
   `,
 };
 
-export const ButtonSize = styled.View<{
-  size: ButtonProps["size"];
-}>`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+export const ButtonSize = styled.View<ButtonSizeProps>`
   ${({size}) => buttonSizeVariations[size ?? "M"]}
 `;

@@ -1,6 +1,6 @@
 import {css} from "styled-components/native";
 import {AppThemeType} from "../../../theme/types";
-import {ButtonColors} from "../types";
+import {ButtonColors} from "./types";
 
 export const buttonOutilinedColors = {
   primary: css`

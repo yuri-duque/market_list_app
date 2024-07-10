@@ -1,26 +1,11 @@
-import {AppThemeType} from "../../theme/types";
 import {TypographyProps} from "../Typography/types";
+import {ButtoncontainerProps} from "./ButtonContainer/types";
+import {ButtonSizeProps} from "./ButtonSize/types";
 
 type TextProps = Omit<TypographyProps, "text">;
 
-export type ButtonVariations = "contained" | "outlined";
-
-export type ButtonColors = keyof Pick<
-  AppThemeType["colors"],
-  "primary" | "secondary" | "success" | "danger"
->;
-
-export type ButtonSizeVariations = keyof Pick<
-  AppThemeType["sizeVariations"],
-  "S" | "M" | "L"
->;
-
-export type ButtonProps = {
-  text: string;
-  textProps?: TextProps;
-  onPress: () => void;
-  color?: ButtonColors;
-  variation?: ButtonVariations;
-  size?: ButtonSizeVariations;
-  disabled?: boolean;
-};
+export type ButtonProps = ButtoncontainerProps &
+  ButtonSizeProps & {
+    text: string;
+    textProps?: TextProps;
+  };
