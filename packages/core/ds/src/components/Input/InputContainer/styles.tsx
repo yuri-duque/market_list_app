@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components/native";
 import {AppTheme} from "../../../theme/theme";
-import {InputProps, InputVariations} from "../types";
+import {InputContainerProps, InputVariations} from "./types";
 
 const inputVariations = {
   primary: css`
@@ -22,10 +22,7 @@ export const getPlaceholderTextColor = (variation?: InputVariations) => {
   return variationTexts[variation ?? "primary"];
 };
 
-export const InputContainer = styled.View<{
-  variation?: InputVariations;
-  disabled?: InputProps["disabled"];
-}>`
+export const InputContainer = styled.View<InputContainerProps>`
   border: 1px solid;
   background-color: #fff;
   border-radius: 8px;
