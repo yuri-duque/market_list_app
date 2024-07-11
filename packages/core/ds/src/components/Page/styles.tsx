@@ -1,14 +1,8 @@
 import styled from "styled-components/native";
-import {PageProps} from "./types";
-
-export const ScrollView = styled.ScrollView`
-  width: 100%;
-  height: 100%;
-`;
 
 export const Container = styled.View<Pick<PageProps, "noPadding">>`
-  flex: 1;
+  width: 100%;
+  height: 100%;
   padding: ${({noPadding, theme}) =>
-    noPadding ? 0 : theme.sizeVariations.S}px;
-  background-color: ${({theme}) => theme.colors.background};
+    noPadding ? 0 : theme.sizeVariations.XS}px;
 `;

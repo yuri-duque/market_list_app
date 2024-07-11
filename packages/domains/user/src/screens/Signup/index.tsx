@@ -1,6 +1,6 @@
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {Button, Input, Page, Spacing} from "@core/ds";
+import {Button, FormPage, Input, Spacing} from "@core/ds";
 import {useAuthStack} from "../../routes";
 import * as S from "./styles";
 import {SignupFormValues} from "./types";
@@ -63,7 +63,7 @@ export const SignupScreen = () => {
   };
 
   return (
-    <Page noSafeArea footer={<Footer />}>
+    <FormPage noSafeArea footer={<Footer />}>
       <S.Container>
         <S.InputsContainer>
           <Input
@@ -95,6 +95,6 @@ export const SignupScreen = () => {
           <Spacing size="XXL" />
         </S.InputsContainer>
       </S.Container>
-    </Page>
+    </FormPage>
   );
 };

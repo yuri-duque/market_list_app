@@ -8,7 +8,7 @@
     "ios:bundle": "bundle install",
     "ios:open": "open -a Simulator && xcrun simctl boot 'iPhone 15 Pro Max'",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "react-native start --reset-cache --experimental-debugger",
     "test": "jest"
   },
   "dependencies": {
