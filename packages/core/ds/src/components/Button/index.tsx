@@ -11,6 +11,7 @@ export const Button = ({
   variation,
   size,
   disabled,
+  rounded = true,
 }: ButtonProps) => {
   return (
     <ButtonSize size={size}>
@@ -18,7 +19,8 @@ export const Button = ({
         onPress={onPress}
         color={color}
         variation={variation}
-        disabled={disabled}>
+        disabled={disabled}
+        rounded={rounded}>
         <Typography
           {...textProps}
           text={text}
