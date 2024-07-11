@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import {PageProps} from "./types";
 
 export const Container = styled.View<Pick<PageProps, "noPadding">>`
   width: 100%;

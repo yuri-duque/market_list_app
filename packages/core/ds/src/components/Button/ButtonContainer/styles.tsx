@@ -32,7 +32,7 @@ export const ButtonContainer = styled.TouchableOpacity<ButtoncontainerProps>`
   align-items: center;
   justify-content: center;
 
-  border-radius: 8px;
+  border-radius: ${({rounded}) => (rounded === false ? 0 : 9)}px;
   border: 1px solid;
 
   opacity: ${prop => (prop.disabled ? 0.5 : 1)};

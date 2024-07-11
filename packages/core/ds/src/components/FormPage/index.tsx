@@ -12,7 +12,7 @@ import * as S from "./styles";
 import {FormPageProps} from "./types";
 
 export const FormPage = ({
-  noPadding,
+  noPadding = false,
   noSafeArea,
   children,
   footer,
@@ -59,7 +59,7 @@ export const FormPage = ({
   return (
     <PageSafeArea noSafeArea={noSafeArea}>
       <ScrollView>
-        <View style={{height: scrollHeight, backgroundColor: "red"}}>
+        <View style={{height: scrollHeight}}>
           <S.Container
             noPadding={noPadding}
             onLayout={event => setHeight(event, setContentHeight)}>
