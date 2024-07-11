@@ -1,1 +1,1 @@
-export * from "./useVerifyConnection";
+export * from "./firebase";

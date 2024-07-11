@@ -13,6 +13,12 @@ export const AppTheme: AppThemeType = {
     white: "#fff", // Branco
     background: "#f2f2f2", // Cinza claro,
   },
+  opacity: {
+    black15: "00000026",
+    black30: "0000004d",
+    black45: "00000073",
+    black60: "000000A6",
+  },
   fontFamily: {
     roboto: "Roboto-Regular",
     robotoBlack: "Roboto-Black",

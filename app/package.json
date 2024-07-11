@@ -32,7 +32,7 @@
     "@babel/runtime": "^7.20.0",
     "@core/config": "*",
     "@core/ds": "*",
-    "@domains/users": "*",
+    "@domains/user": "*",
     "@react-native/babel-preset": "0.74.84",
     "@react-native/eslint-config": "0.74.84",
     "@react-native/metro-config": "0.74.84",

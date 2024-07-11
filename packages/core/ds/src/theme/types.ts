@@ -11,6 +11,12 @@ export type AppThemeType = {
     white: string;
     background: string;
   };
+  opacity: {
+    black15: string;
+    black30: string;
+    black45: string;
+    black60: string;
+  };
   fontFamily: {
     roboto: string;
     robotoBlack: string;
