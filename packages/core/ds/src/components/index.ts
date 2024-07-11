@@ -3,6 +3,7 @@ export * from "./Card";
 export * from "./FormPage";
 export * from "./Input";
 export * from "./Label";
+export * from "./Loading";
 export * from "./Page";
 export * from "./Spacing";
 export * from "./Typography";
