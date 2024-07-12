@@ -1740,9 +1740,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@domains/user@npm:*, @domains/user@workspace:packages/domains/users":
+"@domains/user@npm:*, @domains/user@workspace:packages/domains/user":
   version: 0.0.0-use.local
-  resolution: "@domains/user@workspace:packages/domains/users"
+  resolution: "@domains/user@workspace:packages/domains/user"
   dependencies:
     "@core/config": "npm:*"
     "@core/ds": "npm:*"

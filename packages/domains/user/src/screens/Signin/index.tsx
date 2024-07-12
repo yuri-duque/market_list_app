@@ -1,16 +1,53 @@
 import {useState} from "react";
-import {View} from "react-native";
-import {Button, Card, Input, Page, Typography} from "@core/ds";
+import {ToastAndroid} from "react-native";
+import {useFormik} from "formik";
+import * as Yup from "yup";
+import {Button, Card, Input, Page, Typography, useLoading} from "@core/ds";
 import {useAuthStack} from "../../routes";
+import {UserService} from "../../service/userService";
 import * as S from "./styles";
+import {SigninFormValues} from "./types";
 
 export const SigninScreen = () => {
+  const userService = new UserService();
   const navigation = useAuthStack();
+  const loading = useLoading();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const fildNames = {
+    email: "email",
+    password: "password",
+  };
 
-  const onLogin = () => {};
+  const initialValues: SigninFormValues = {
+    email: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password is too short - should be 6 chars minimum"),
+    confirmPassword: Yup.string(),
+  });
+
+  const onLogin = async () => {
+    loading.setVisible(true);
+    try {
+      const user = await userService.login(values.email, values.password);
+      console.log("SUCESSO", user);
+    } catch (error: any) {
+      ToastAndroid.show(error.message, 1000);
+    }
+    loading.setVisible(false);
+  };
+
+  const {values, errors, setFieldValue, handleSubmit} = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: onLogin,
+    validateOnChange: false,
+  });
 
   const goToRegister = () => {
     navigation.navigate("Signup");
@@ -34,10 +71,16 @@ export const SigninScreen = () => {
             />
           }>
           <S.InputsGroup>
-            <Input value={email} onChangeText={setEmail} label="Email" />
             <Input
-              value={password}
-              onChangeText={setPassword}
+              value={values.email}
+              onChangeText={value => setFieldValue(fildNames.email, value)}
+              error={errors.email}
+              label="Email"
+            />
+            <Input
+              value={values.password}
+              onChangeText={value => setFieldValue(fildNames.password, value)}
+              error={errors.password}
               label="Password"
               type="password"
             />
@@ -65,7 +108,7 @@ export const SigninScreen = () => {
             <S.ButtonContainer>
               <Button
                 text="Login"
-                onPress={onLogin}
+                onPress={handleSubmit}
                 textProps={{weight: "semiBold"}}
               />
             </S.ButtonContainer>
