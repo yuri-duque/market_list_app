@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import * as Yup from "yup";
 import {Button, Card, Input, Page, Typography, useLoading} from "@core/ds";
 import {useAuthStack} from "../../routes";
-import {UserService} from "../../service/userService";
+import {UserService} from "../../services/userService";
 import * as S from "./styles";
 import {SigninFormValues} from "./types";
 
