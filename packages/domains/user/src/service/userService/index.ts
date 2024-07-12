@@ -16,8 +16,8 @@ export class UserService {
       };
 
       await this.repository.save(baseUser);
-    } catch (error) {
-      throw new Error("Failed to create user. Please try again later.");
+    } catch (error: any) {
+      throw new Error(error.message);
     }
   }
 
@@ -27,8 +27,8 @@ export class UserService {
 
       const savedUser = await this.repository.getById(user.uid);
       return savedUser;
-    } catch (error) {
-      throw new Error("Failed to create user. Please try again later.");
+    } catch (error: any) {
+      throw new Error(error.message);
     }
   }
 }

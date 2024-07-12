@@ -1,5 +1,4 @@
-import {useState} from "react";
-import {ToastAndroid} from "react-native";
+import Toast from "react-native-toast-message";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import {Button, Card, Input, Page, Typography, useLoading} from "@core/ds";
@@ -25,19 +24,19 @@ export const SigninScreen = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
-    password: Yup.string()
-      .required("Password is required")
-      .min(6, "Password is too short - should be 6 chars minimum"),
-    confirmPassword: Yup.string(),
+    password: Yup.string().required("Password is required"),
   });
 
   const onLogin = async () => {
     loading.setVisible(true);
     try {
-      const user = await userService.login(values.email, values.password);
-      console.log("SUCESSO", user);
+      const user = await userService.login(
+        values.email.trim(),
+        values.password.trim(),
+      );
+      navigation.navigate("Home");
     } catch (error: any) {
-      ToastAndroid.show(error.message, 1000);
+      Toast.show({type: "error", text1: error.message});
     }
     loading.setVisible(false);
   };
@@ -54,7 +53,7 @@ export const SigninScreen = () => {
   };
 
   const goToForgotPassword = () => {
-    navigation.navigate("ForgotPassword");
+    navigation.navigate("RetrievePassword");
   };
 
   return (

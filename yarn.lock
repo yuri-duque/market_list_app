@@ -1756,6 +1756,7 @@ __metadata:
     formik: "npm:^2.4.6"
     react: "npm:18.2.0"
     react-native: "npm:0.74.2"
+    react-native-toast-message: "npm:^2.2.0"
     styled-components: "npm:^6.1.11"
     typescript: "npm:^5.5.2"
     yup: "npm:^1.4.0"
@@ -3661,6 +3662,7 @@ __metadata:
     react-native-monorepo-tools: "npm:^1.2.1"
     react-native-safe-area-context: "npm:^4.10.7"
     react-native-screens: "npm:^3.32.0"
+    react-native-toast-message: "npm:^2.2.0"
     react-test-renderer: "npm:18.2.0"
     styled-components: "npm:^6.1.11"
     typescript: "npm:^5.5.2"
@@ -8929,6 +8931,16 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/38dc2e2bf3072c544d3bacceedbcc8ffaee5a588f4984c8d7186a236bd436f761c9b987a37fb3af8e0df2e5980db6155c5f6b6d4a3983001d0f45aa704a20b93
+  languageName: node
+  linkType: hard
+
+"react-native-toast-message@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "react-native-toast-message@npm:2.2.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/02c2507efba0875a85cecde616e60144daea4ea6b9e7f153f23b3f513a8f3c6c90181ee2d10aeb8093605957ba5bd415c4fa3ae8ed06691810c2f4b9599ea0c8
   languageName: node
   linkType: hard
 

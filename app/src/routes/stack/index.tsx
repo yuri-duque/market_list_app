@@ -25,7 +25,7 @@ export const StackRouter = () => {
     <Stack.Navigator initialRouteName="Splash" screenOptions={screenOptions}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="AuthStack" component={AuthStack} />
+      <Stack.Screen name="AuthStack" component={AuthStack as any} />
     </Stack.Navigator>
   );
 };

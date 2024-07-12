@@ -1,4 +1,4 @@
-import {ToastAndroid} from "react-native";
+import Toast from "react-native-toast-message";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import {Button, FormPage, Input, Spacing, useLoading} from "@core/ds";
@@ -45,15 +45,16 @@ export const SignupScreen = () => {
     loading.setVisible(true);
     try {
       const user = {
-        username: values.username,
-        email: values.email,
-        password: values.password,
+        username: values.username.trim(),
+        email: values.email.trim(),
+        password: values.password.trim(),
       } as User;
 
       await userService.save(user);
+      Toast.show({type: "success", text1: "User created"});
       navigation.navigate("Signin");
     } catch (error: any) {
-      ToastAndroid.show(error.message, 1000);
+      Toast.show({type: "error", text1: error.message});
     }
     loading.setVisible(false);
   };

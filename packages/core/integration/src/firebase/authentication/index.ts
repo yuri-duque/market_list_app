@@ -27,7 +27,7 @@ export class Auth {
     }
   }
 
-  async forgotPassword(email: string) {
+  async retrievePassword(email: string) {
     try {
       await auth().sendPasswordResetEmail(email);
     } catch (error: any) {
