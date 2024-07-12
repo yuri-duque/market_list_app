@@ -1,15 +1,15 @@
-import {useEffect} from "react";
 import {ToastAndroid} from "react-native";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import {Button, FormPage, Input, Spacing, useLoading} from "@core/ds";
-import {createUser} from "@core/integration";
-import firestore from "@react-native-firebase/firestore";
 import {useAuthStack} from "../../routes";
+import {UserService} from "../../service/userService";
+import {User} from "../../types/user";
 import * as S from "./styles";
 import {SignupFormValues} from "./types";
 
 export const SignupScreen = () => {
+  const userService = new UserService();
   const navigation = useAuthStack();
   const loading = useLoading();
 
@@ -44,30 +44,19 @@ export const SignupScreen = () => {
   const onSubmit = async (values: SignupFormValues) => {
     loading.setVisible(true);
     try {
-      console.log("CREATE", {values});
-      const user = await createUser(values.email, values.password);
-      console.log("SUCCESS", user);
-      // navigation.navigate("Signin");
+      const user = {
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      } as User;
+
+      await userService.save(user);
+      navigation.navigate("Signin");
     } catch (error: any) {
-      console.log("ERROR", error);
       ToastAndroid.show(error.message, 1000);
     }
     loading.setVisible(false);
   };
-
-  const getUsers = async () => {
-    try {
-      const users = await firestore().collection("users").get();
-      const data = users.docs.map(doc => doc.data());
-      console.log("users", data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
 
   const {values, errors, setFieldValue, handleSubmit} = useFormik({
     initialValues,
@@ -109,6 +98,7 @@ export const SignupScreen = () => {
             error={errors.password}
             onChangeText={value => setFieldValue(fildNames.password, value)}
             label="Password"
+            type="password"
           />
           <Input
             value={values.confirmPassword}
@@ -117,6 +107,7 @@ export const SignupScreen = () => {
               setFieldValue(fildNames.confirmPassword, value)
             }
             label="Configm password"
+            type="password"
           />
           <Spacing size="XXL" />
         </S.InputsContainer>
