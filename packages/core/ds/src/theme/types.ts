@@ -3,6 +3,7 @@ export type AppThemeType = {
     primary: string;
     secondary: string;
     success: string;
+    lightSuccess: string;
     danger: string;
     warning: string;
     info: string;

@@ -31,4 +31,6 @@ export const Text = styled.Text<TextProps>`
     weight ? theme.fontWeight[weight] : theme.fontWeight.medium};
 
   text-align: ${({align}) => align ?? "left"};
+
+  text-decoration: ${({decotarion}) => decotarion ?? "none"};
 `;

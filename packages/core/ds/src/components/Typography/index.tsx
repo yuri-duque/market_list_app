@@ -9,6 +9,7 @@ export const Typography = ({
   align,
   family,
   italic,
+  decotarion,
 }: TypographyProps) => {
   return (
     <S.Text
@@ -17,7 +18,8 @@ export const Typography = ({
       weight={weight}
       align={align}
       family={family}
-      italic={italic}>
+      italic={italic}
+      decotarion={decotarion}>
       {text}
     </S.Text>
   );

@@ -9,4 +9,5 @@ export type TypographyProps = {
   align?: "left" | "center" | "right";
   family?: keyof AppThemeType["fontFamily"];
   italic?: boolean;
+  decotarion?: "none" | "underline" | "line-through";
 };

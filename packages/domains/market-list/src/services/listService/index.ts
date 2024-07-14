@@ -1,15 +1,37 @@
-import {FirestoreDocument, FirestoreRepository} from "@core/integration";
+import {Auth, FirestoreRepository} from "@core/integration";
+import {List} from "../../types/List";
 
 export class ListService {
-  private repository: FirestoreRepository<FirestoreDocument>;
+  private auth = new Auth();
+  private repository: FirestoreRepository<List>;
 
-  constructor(userId: string) {
+  constructor() {
     this.repository = new FirestoreRepository(firebase =>
-      firebase.collection("users").doc(userId).collection("lists"),
+      firebase.collection("users").doc(this.auth.userId).collection("lists"),
     );
   }
 
-  async save(product: FirestoreDocument) {
-    await this.repository.save(product);
+  async start() {
+    const lists = await this.getAll();
+    if (lists.length) {
+      return lists[0];
+    }
+
+    let newList: List = {
+      name: "My List",
+    };
+    return this.save(newList);
+  }
+
+  private save(list: List): Promise<List> {
+    return this.repository.save(list);
+  }
+
+  getAll(): Promise<List[]> {
+    return this.repository.getAll();
+  }
+
+  getById(id: string): Promise<List | null> {
+    return this.repository.getById(id);
   }
 }

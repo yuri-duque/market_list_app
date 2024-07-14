@@ -4,7 +4,8 @@ export const AppTheme: AppThemeType = {
   colors: {
     primary: "#007bff", // Azul
     secondary: "#6c757d", // Cinza
-    success: "#28a745", // Verde
+    success: "#67c23a", // Verde
+    lightSuccess: "#e1f3d8", // Verde claro
     danger: "#fc7e7e", // Vermelho
     warning: "#ffc107", // Amarelo
     info: "#17a2b8", // Azul claro
