@@ -12,6 +12,7 @@ type AuthStackParamList = {
   Signup: undefined;
   RetrievePassword: undefined;
   Home: undefined;
+  MarketList: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();

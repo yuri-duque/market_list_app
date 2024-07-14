@@ -23,25 +23,30 @@ export const SigninScreen = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    // email: Yup.string().email("Invalid email").required("Email is required"),
-    // password: Yup.string().required("Password is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Password is required"),
   });
+
+  const goToMarketList = () => {
+    navigation.navigate("MarketList");
+  }
 
   const onLogin = async () => {
     loading.setVisible(true);
     try {
-      const user = await userService.login(
+      await userService.login(
         values.email.trim(),
         values.password.trim(),
       );
-      navigation.navigate("Home");
+      resetForm();
+      goToMarketList();
     } catch (error: any) {
       Toast.show({type: "error", text1: error.message});
     }
     loading.setVisible(false);
   };
 
-  const {values, errors, setFieldValue, handleSubmit} = useFormik({
+  const {values, errors, setFieldValue, handleSubmit, resetForm} = useFormik({
     initialValues,
     validationSchema,
     onSubmit: onLogin,

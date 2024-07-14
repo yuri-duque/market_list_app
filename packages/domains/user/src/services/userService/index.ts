@@ -2,36 +2,41 @@ import {Auth, FirestoreRepository} from "@core/integration";
 import {User} from "../../types/user";
 
 export class UserService {
-  private repository = new FirestoreRepository(firebase =>
-    firebase.collection("users"),
-  );
+  private repository: FirestoreRepository<User>;
+  private auth: Auth;
 
-  private auth = new Auth();
+  constructor() {
+    this.repository = new FirestoreRepository(firebase =>
+      firebase.collection("users"),
+    );
+    this.auth = new Auth();
+  }
+
+  async userLogged() {
+    const user = this.auth.userId;
+    if (!user) {
+      return false;
+    }
+
+    return true;
+  }
 
   async save(newUser: User) {
-    try {
-      const user = await this.auth.createUser(newUser.email, newUser.password);
+    const user = await this.auth.createUser(newUser.email, newUser.password);
 
-      const baseUser: User = {
-        ...newUser,
-        email: user.email as string,
-        id: user.uid,
-      };
+    const baseUser: User = {
+      ...newUser,
+      email: user.email as string,
+      id: user.uid,
+    };
 
-      await this.repository.save(baseUser);
-    } catch (error: any) {
-      throw new Error(error.message);
-    }
+    await this.repository.save(baseUser);
   }
 
   async login(email: string, password: string) {
-    try {
-      const user = await this.auth.loginUser(email, password);
+    const user = await this.auth.loginUser(email, password);
 
-      const savedUser = await this.repository.getById(user.uid);
-      return savedUser;
-    } catch (error: any) {
-      throw new Error(error.message);
-    }
+    const savedUser = await this.repository.getById(user.uid);
+    return savedUser;
   }
 }

@@ -1,16 +1,19 @@
 import {useEffect} from "react";
-
+import {Auth} from "@core/integration";
 import background from "../../../assets/images/background.png";
 import {useAppStack} from "../../routes/stack";
 import * as S from "./styles";
 
 export const SplashScreen = () => {
   const navigation = useAppStack();
+  const auth = new Auth();
 
   useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate("AuthStack");
-    }, 1000);
+    if (auth.userId) {
+      navigation.navigate("MarketList");
+    } else {
+      navigation.navigate("Auth");
+    }
   });
 
   return (

@@ -3,7 +3,9 @@ import firebase, {
 } from "@react-native-firebase/firestore";
 
 export type FirestoreDocument = {
-  id: string;
+  id?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   [key: string]: any;
 };
 
@@ -18,11 +20,23 @@ export class FirestoreRepository<T extends FirestoreDocument> {
     this.db = collection(firebase());
   }
 
-  async save(document: T): Promise<void> {
+  generateId(): string {
+    return this.db.doc().id;
+  }
+
+  async save(document: T): Promise<T> {
+    document.createdAt = new Date();
+
+    if (!document.id) {
+      document.id = this.generateId();
+    }
+
     await this.db.doc(document.id).set(document);
+    return document;
   }
 
   async update(document: T): Promise<void> {
+    document.updatedAt = new Date();
     await this.db.doc(document.id).update(document);
   }
 

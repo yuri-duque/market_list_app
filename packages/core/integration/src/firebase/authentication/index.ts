@@ -1,7 +1,30 @@
 import auth from "@react-native-firebase/auth";
 
 export class Auth {
-  async createUser(email: string, password: string) {
+  public userId: string = "";
+
+  constructor() {
+    this.getCurrentUser();
+    this.authStateChanged();
+  }
+
+  private authStateChanged() {
+    auth().onAuthStateChanged(user => {
+      this.userId = user?.uid || "";
+    });
+  }
+
+  private getCurrentUser() {
+    const user = auth().currentUser;
+    this.userId = user?.uid || "";
+    return this.userId;
+  }
+
+  public async signOut() {
+    return auth().signOut();
+  }
+
+  public async createUser(email: string, password: string) {
     try {
       const userCredential = await auth().createUserWithEmailAndPassword(
         email,
@@ -15,7 +38,8 @@ export class Auth {
       throw new Error("Failed to create user. Please try again later.");
     }
   }
-  async loginUser(email: string, password: string) {
+
+  public async loginUser(email: string, password: string) {
     try {
       const userCredential = await auth().signInWithEmailAndPassword(
         email,
@@ -27,7 +51,7 @@ export class Auth {
     }
   }
 
-  async retrievePassword(email: string) {
+  public async retrievePassword(email: string) {
     try {
       await auth().sendPasswordResetEmail(email);
     } catch (error: any) {

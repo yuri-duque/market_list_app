@@ -12,7 +12,7 @@ import {SplashScreen} from "../../screens/Splash";
 export type StackRouterParamList = {
   Splash: undefined;
   Home: undefined;
-  AuthStack: undefined;
+  Auth: undefined;
   MarketList: undefined;
 };
 
@@ -27,7 +27,7 @@ export const StackRouter = () => {
     <Stack.Navigator initialRouteName="Splash" screenOptions={screenOptions}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="AuthStack" component={AuthStack as any} />
+      <Stack.Screen name="Auth" component={AuthStack as any} />
       <Stack.Screen name="MarketList" component={MarketStack as any} />
     </Stack.Navigator>
   );
