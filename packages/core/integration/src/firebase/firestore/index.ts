@@ -1,35 +1,33 @@
-import firebase from "@react-native-firebase/firestore";
+import firebase, {
+  FirebaseFirestoreTypes,
+} from "@react-native-firebase/firestore";
 
 export type FirestoreDocument = {
   id: string;
   [key: string]: any;
 };
 
+type BaseCollection = (
+  firebase: FirebaseFirestoreTypes.Module,
+) => FirebaseFirestoreTypes.CollectionReference<FirebaseFirestoreTypes.DocumentData>;
+
 export class FirestoreRepository<T extends FirestoreDocument> {
-  private collectionName: string;
+  protected db: FirebaseFirestoreTypes.CollectionReference<FirebaseFirestoreTypes.DocumentData>;
 
-  constructor(collectionName: string) {
-    this.collectionName = collectionName;
-  }
-
-  db() {
-    return firebase().collection(this.collectionName);
-  }
-
-  async filter() {
-    return firebase().collection(this.collectionName);
+  constructor(collection: BaseCollection) {
+    this.db = collection(firebase());
   }
 
   async save(document: T): Promise<void> {
-    await this.db().doc(document.id).set(document);
+    await this.db.doc(document.id).set(document);
   }
 
   async update(document: T): Promise<void> {
-    await this.db().doc(document.id).update(document);
+    await this.db.doc(document.id).update(document);
   }
 
   async getById(id: string): Promise<T | null> {
-    const snapshot = await this.db().doc(id).get();
+    const snapshot = await this.db.doc(id).get();
 
     if (snapshot.exists) {
       return {id: snapshot.id, ...snapshot.data()} as T;
@@ -39,7 +37,7 @@ export class FirestoreRepository<T extends FirestoreDocument> {
   }
 
   async getAll(): Promise<T[]> {
-    const querySnapshot = await this.db().get();
+    const querySnapshot = await this.db.get();
 
     const documents: T[] = [];
 
@@ -51,6 +49,6 @@ export class FirestoreRepository<T extends FirestoreDocument> {
   }
 
   async delete(id: string): Promise<void> {
-    await firebase().collection(this.collectionName).doc(id).delete();
+    await this.db.doc(id).delete();
   }
 }
