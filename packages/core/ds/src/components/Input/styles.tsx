@@ -1,4 +1,3 @@
-import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styled from "styled-components/native";
 
 export const InputContent = styled.View`
@@ -30,8 +29,4 @@ export const LabelContainer = styled.View`
 export const ErrorContainer = styled.View`
   padding-top: 4px;
   padding-left: 4px;
-`;
-
-export const Icon = styled(MaterialIcon)`
-  color: ${({theme}) => theme.colors.secondary};
 `;

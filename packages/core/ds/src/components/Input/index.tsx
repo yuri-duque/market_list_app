@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {KeyboardTypeOptions, View} from "react-native";
+import {Icon} from "../Icon";
 import {Label} from "../Label";
 import {Typography} from "../Typography";
 import {InputContainer, getPlaceholderTextColor} from "./InputContainer/styles";
@@ -45,9 +46,9 @@ export const Input = ({
             </S.InputLabel>
 
             {type === "password" && (
-              <S.Icon
+              <Icon
                 name={hideText ? "eye-off" : "eye"}
-                size={20}
+                size={"L"}
                 onPress={() => setHideText(!hideText)}
               />
             )}
