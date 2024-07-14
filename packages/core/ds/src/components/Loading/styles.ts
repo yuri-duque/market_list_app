@@ -3,7 +3,7 @@ import LottieView from "lottie-react-native";
 import styled from "styled-components/native";
 
 export const LoadingContent = styled.View`
-  background-color: ${({theme}) => theme.opacity.black60};
+  background-color: ${({theme}) => theme.opacity.black30};
   width: 100%;
   height: 100%;
   justify-content: center;

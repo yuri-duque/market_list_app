@@ -29,6 +29,7 @@
 		BFBCB041AD3A481F8870C57F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A35847A255994D4E83FF524D /* Roboto-Bold.ttf */; };
 		C2A2AE8B751E49F5BF89F37B /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E019A7D77583452A85ED073F /* MaterialCommunityIcons.ttf */; };
 		DFBD517CBF264B51A23895E4 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DADCEEF817B9468E99C02904 /* Roboto-Black.ttf */; };
+		EA0D19032C435C6000E5458D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0D19022C435C6000E5458D /* File.swift */; };
 		EA416BA22C3F751A0051A7EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA416BA12C3F75190051A7EB /* GoogleService-Info.plist */; };
 		F259A1072EE14D93837B07B6 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC6B5790F0E7450BBD778230 /* MaterialIcons.ttf */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,8 @@
 		E019A7D77583452A85ED073F /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = ../assets/fonts/MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
 		E542FF0507A3038F729B887F /* Pods_MarketList_MarketListTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarketList_MarketListTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D7CE73ED15498B934B8195 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		EA0D19012C435C5F00E5458D /* MarketList-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarketList-Bridging-Header.h"; sourceTree = "<group>"; };
+		EA0D19022C435C6000E5458D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		EA416BA12C3F75190051A7EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FC6B5790F0E7450BBD778230 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = ../assets/fonts/MaterialIcons.ttf; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EA0D19022C435C6000E5458D /* File.swift */,
 				EA416BA12C3F75190051A7EB /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* MarketList */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -161,6 +165,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				91E9761F8EC14341AE1CA342 /* Resources */,
+				EA0D19012C435C5F00E5458D /* MarketList-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -268,7 +273,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1520;
 					};
 				};
 			};
@@ -485,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				EA0D19032C435C6000E5458D /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,6 +510,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-MarketList-MarketListTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -531,6 +538,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-MarketList-MarketListTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = MarketListTests/Info.plist;
@@ -572,6 +580,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MarketList;
+				SWIFT_OBJC_BRIDGING_HEADER = "MarketList-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -598,6 +607,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MarketList;
+				SWIFT_OBJC_BRIDGING_HEADER = "MarketList-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -606,6 +616,7 @@
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -700,6 +711,7 @@
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CC = "";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
