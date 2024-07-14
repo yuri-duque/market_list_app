@@ -1,3 +1,4 @@
+import {MarketStack} from "@domains/market-list";
 import {AuthStack} from "@domains/user";
 import {useNavigation} from "@react-navigation/native";
 import {
@@ -12,6 +13,7 @@ export type StackRouterParamList = {
   Splash: undefined;
   Home: undefined;
   AuthStack: undefined;
+  MarketList: undefined;
 };
 
 const Stack = createNativeStackNavigator<StackRouterParamList>();
@@ -26,6 +28,7 @@ export const StackRouter = () => {
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="AuthStack" component={AuthStack as any} />
+      <Stack.Screen name="MarketList" component={MarketStack as any} />
     </Stack.Navigator>
   );
 };

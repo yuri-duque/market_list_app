@@ -2,7 +2,10 @@ import {Auth, FirestoreRepository} from "@core/integration";
 import {User} from "../../types/user";
 
 export class UserService {
-  private repository = new FirestoreRepository("users");
+  private repository = new FirestoreRepository(firebase =>
+    firebase.collection("users"),
+  );
+
   private auth = new Auth();
 
   async save(newUser: User) {
