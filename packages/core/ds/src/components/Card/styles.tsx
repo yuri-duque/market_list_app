@@ -1,14 +1,19 @@
 import styled from "styled-components/native";
+import {CardProps} from "./types";
 
-export const CardStyled = styled.View`
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 16px;
+export const CardStyled = styled.View<{
+  radius?: CardProps["radius"];
+  backgroundColor?: CardProps["backgroundColor"];
+}>`
+  background-color: ${({theme, backgroundColor}) =>
+    backgroundColor ? theme.colors[backgroundColor] : theme.colors.white};
+  border-radius: ${({radius, theme}) =>
+    radius ? theme.sizeVariations[radius] : theme.sizeVariations.S}px;
+  shadow-color: ${prop => prop.theme.colors.dark};
 
   elevation: 4;
-  shadow-color: ${prop => prop.theme.colors.dark};
   shadow-offset: 2px 2px;
-  shadow-opacity: 0.5;
+  shadow-opacity: 0.25;
   shadow-radius: 4px;
 `;
 
