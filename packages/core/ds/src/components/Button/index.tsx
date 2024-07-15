@@ -1,6 +1,8 @@
+import {Icon} from "../Icon";
 import {Typography} from "../Typography";
 import {ButtonContainer, getTextColor} from "./ButtonContainer/styles";
 import {ButtonSize} from "./ButtonSize/styles";
+import * as S from "./styles";
 import {ButtonProps} from "./types";
 
 export const Button = ({
@@ -12,6 +14,8 @@ export const Button = ({
   size,
   disabled,
   rounded = true,
+  icon,
+  iconProps,
 }: ButtonProps) => {
   return (
     <ButtonSize size={size}>
@@ -21,6 +25,15 @@ export const Button = ({
         variation={variation}
         disabled={disabled}
         rounded={rounded}>
+        {icon && (
+          <S.ButtonContainer>
+            <Icon
+              {...iconProps}
+              name={icon}
+              color={getTextColor(color, variation)}
+            />
+          </S.ButtonContainer>
+        )}
         <Typography
           {...textProps}
           text={text}
