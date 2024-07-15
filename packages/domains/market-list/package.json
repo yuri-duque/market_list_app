@@ -15,6 +15,7 @@
   "dependencies": {
     "@core/ds": "*",
     "@core/integration": "*",
+    "@gorhom/bottom-sheet": "^4.6.3",
     "@react-native-firebase/app": "^20.1.0",
     "@react-native-firebase/auth": "^20.1.0",
     "@react-native-firebase/firestore": "^20.1.0",

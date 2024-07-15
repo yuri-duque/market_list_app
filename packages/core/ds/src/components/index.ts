@@ -5,6 +5,7 @@ export * from "./Icon";
 export * from "./Input";
 export * from "./Label";
 export * from "./Loading";
+export * from "./Modal";
 export * from "./Page";
 export * from "./Spacing";
 export * from "./Typography";

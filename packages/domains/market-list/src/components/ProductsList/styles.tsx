@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import {Icon} from "@core/ds";
 
 export const Container = styled.View`
   flex: 1;
