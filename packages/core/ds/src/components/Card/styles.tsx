@@ -4,7 +4,10 @@ import {CardProps} from "./types";
 export const CardStyled = styled.View<{
   radius?: CardProps["radius"];
   backgroundColor?: CardProps["backgroundColor"];
+  flex?: CardProps["flex"];
 }>`
+  flex: ${({flex}) => (flex ? 1 : "none")};
+
   background-color: ${({theme, backgroundColor}) =>
     backgroundColor ? theme.colors[backgroundColor] : theme.colors.white};
   border-radius: ${({radius, theme}) =>

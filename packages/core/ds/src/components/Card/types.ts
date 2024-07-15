@@ -6,4 +6,5 @@ export type CardProps = {
   header?: React.ReactNode;
   radius?: keyof AppThemeType["sizeVariations"];
   backgroundColor?: keyof AppThemeType["colors"];
+  flex?: boolean;
 };
