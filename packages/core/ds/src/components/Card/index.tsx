@@ -7,9 +7,14 @@ export const Card = ({
   backgroundColor,
   radius,
   flex,
+  margin,
 }: CardProps) => {
   return (
-    <S.CardStyled backgroundColor={backgroundColor} radius={radius} flex={flex}>
+    <S.CardStyled
+      backgroundColor={backgroundColor}
+      radius={radius}
+      flex={flex}
+      margin={margin}>
       {header && <S.CardHeader>{header}</S.CardHeader>}
       <S.CardContent>{children}</S.CardContent>
     </S.CardStyled>
