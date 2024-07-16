@@ -10,11 +10,9 @@ export const App = () => {
     <>
       <GestureHandlerRootView>
         <ThemeProvider>
-          {/* <BottomSheetModalProvider> */}
           <LoadingProvider>
             <Routes />
           </LoadingProvider>
-          {/* </BottomSheetModalProvider> */}
         </ThemeProvider>
       </GestureHandlerRootView>
 
