@@ -1,15 +1,21 @@
 import {TouchableOpacity} from "react-native";
 import * as S from "./styles";
-import {ProductItemActionsProps} from "./types";
+import { Product } from "../../../types";
 
-export const ProductItemActions = ({product}: ProductItemActionsProps) => {
+type ProductItemActionsProps = {
+  product: Product;
+  onDeleteProduct: () => void;
+};
+
+export const ProductItemActions = ({
+  product,
+  onDeleteProduct,
+}: ProductItemActionsProps) => {
   return (
     <S.ActionsContainer>
-      {!product.addedAtCart && (
-        <TouchableOpacity onPress={() => {}}>
-          <S.TrashIcon name="trash-can-outline" size="M" color="secondary" />
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity onPress={onDeleteProduct}>
+        <S.TrashIcon name="trash-can-outline" size="M" color="secondary" />
+      </TouchableOpacity>
     </S.ActionsContainer>
   );
 };

@@ -54,7 +54,7 @@ export const SignupScreen = () => {
       Toast.show({type: "success", text1: "User created"});
       navigation.navigate("Signin");
     } catch (error: any) {
-      Toast.show({type: "error", text1: error.message});
+      Toast.show({type: "error", text1: "Error to create user."});
     }
     loading.setVisible(false);
   };

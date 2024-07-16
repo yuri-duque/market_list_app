@@ -1,16 +1,6 @@
-import {Text, View} from "react-native";
-import {ref} from "yup";
-import {
-  AppTheme,
-  Card,
-  Icon,
-  Input,
-  Spacing,
-  Typography,
-  useLoading,
-} from "@core/ds";
+import Toast from "react-native-toast-message";
+import {Card, useLoading} from "@core/ds";
 import {ProductListService} from "../../services";
-import {formatPrice} from "../../utils";
 import {ProductItemActions} from "./Actions";
 import {ProductItemAddButton} from "./AddButton";
 import {ProductItemDetails} from "./Details";
@@ -22,8 +12,22 @@ export const ProductItem = ({
   product,
   refreshList,
 }: ProductItemProps) => {
+  const loading = useLoading();
+  const productListService = new ProductListService(listId);
+
+  const onDeleteProduct = async () => {
+    loading.setVisible(true);
+    try {
+      await productListService.delete(product.id as string);
+      refreshList();
+    } catch (error: any) {
+      Toast.show({type: "error", text1: "Error to delete product."});
+    }
+    loading.setVisible(false);
+  };
+
   return (
-    <Card>
+    <Card margin="XS">
       <S.CardContent>
         <ProductItemAddButton
           listId={listId}
@@ -33,7 +37,10 @@ export const ProductItem = ({
 
         <ProductItemDetails product={product} />
 
-        <ProductItemActions product={product} />
+        <ProductItemActions
+          product={product}
+          onDeleteProduct={onDeleteProduct}
+        />
       </S.CardContent>
     </Card>
   );

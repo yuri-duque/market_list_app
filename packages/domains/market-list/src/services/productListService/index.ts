@@ -16,6 +16,10 @@ export class ProductListService {
     );
   }
 
+  async getAll(): Promise<Product[]> {
+    return this.repository.getAll();
+  }
+
   save(product: Product): Promise<Product> {
     return this.repository.save(product);
   }
@@ -24,7 +28,7 @@ export class ProductListService {
     await this.repository.update(product);
   }
 
-  async getAll(): Promise<Product[]> {
-    return this.repository.getAll();
+  async delete(productId: string): Promise<void> {
+    await this.repository.delete(productId);
   }
 }
