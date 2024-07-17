@@ -14,24 +14,49 @@ export class ProductHistoryService {
     );
   }
 
-  async saveAll(products: Product[]) {
-    const productHistories: ProductHistory[] = products.map(product => {
-      const newProductHistory: ProductHistory = {
-        id: product.id,
-        name: product.name as string,
-        price: product.price as number,
-        quantity: product.quantity as number,
-      };
+  async addNewHistory(baseProductId: string, product: Product) {
+    const historyProduct = this.mapProductToBaseProduct(product);
 
-      return newProductHistory;
-    });
-
-    productHistories.forEach(productHistory => {
-      this.save(productHistory);
-    });
+    this.save(baseProductId, historyProduct);
   }
 
-  async save(productHistory: ProductHistory) {
-    return this.repository.db.doc(productHistory.id).set(productHistory);
+  async calculateAvgPrice(baseProductId: string) {
+    const products = await this.getLast3HistoryProducts(baseProductId);
+    if (products) {
+      const total = products.reduce((acc, product) => {
+        return acc + product.price;
+      }, 0);
+      return total / products.length;
+    }
+  }
+
+  private mapProductToBaseProduct(product: Product): ProductHistory {
+    return {
+      name: product.name as string,
+      price: product.price as number,
+      quantity: product.quantity as number,
+    };
+  }
+
+  private async save(baseProductId: string, productHistory: ProductHistory) {
+    const newDocument = this.repository.deleteUndefinedValues(productHistory);
+    newDocument.createdAt = new Date();
+    return this.db(baseProductId).doc(productHistory.id).set(newDocument);
+  }
+
+  private async getLast3HistoryProducts(baseProductId: string) {
+    const querySnapshot = await this.db(baseProductId)
+      .orderBy("createdAt", "desc")
+      .limit(3)
+      .get();
+    const documents: ProductHistory[] = [];
+    querySnapshot.forEach(doc => {
+      documents.push(doc.data() as ProductHistory);
+    });
+    return documents;
+  }
+
+  private db(baseProductId: string) {
+    return this.repository.db.doc(baseProductId).collection("history");
   }
 }

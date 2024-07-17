@@ -40,9 +40,11 @@ export const ListScreen = () => {
   const onFinishList = async () => {
     loading.setVisible(true);
     if (list && list.id) {
+      setList(null);
       await listService.finish(list.id);
     }
     loading.setVisible(false);
+    init();
   };
 
   return (

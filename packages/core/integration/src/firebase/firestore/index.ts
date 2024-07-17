@@ -31,13 +31,25 @@ export class FirestoreRepository<T extends FirestoreDocument> {
       document.id = this.generateId();
     }
 
-    await this.db.doc(document.id).set(document);
+    const newDocument = this.deleteUndefinedValues(document);
+
+    await this.db.doc(document.id).set(newDocument);
     return document;
+  }
+
+  deleteUndefinedValues(obj: T): T {
+    for (const key in obj) {
+      if (obj[key] === undefined) {
+        delete obj[key];
+      }
+    }
+    return obj;
   }
 
   async update(document: T): Promise<void> {
     document.updatedAt = new Date();
-    await this.db.doc(document.id).update(document);
+    const newDocument = this.deleteUndefinedValues(document);
+    await this.db.doc(document.id).update(newDocument);
   }
 
   async getById(id: string): Promise<T | null> {

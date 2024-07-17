@@ -40,7 +40,7 @@ export const HomeScreen = () => {
         onChange={onChangeText}
         data={filteredProducts}
         onSearch={onFilterProducts}
-        onItemClick={value => console.log(value)}
+        onItemClick={value => {}}
         inputProps={{label: "name"}}
       />
       <Spacing size="XS" />
