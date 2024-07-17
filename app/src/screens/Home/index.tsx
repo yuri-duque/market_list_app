@@ -1,58 +1,50 @@
-import React, {useCallback, useMemo, useRef} from "react";
-import {Button, StyleSheet, Text, View} from "react-native";
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-  BottomSheetView,
-} from "@gorhom/bottom-sheet";
+import React, {useState} from "react";
+import {Input, Page, Spacing} from "@core/ds";
+import {InputSearch} from "@core/ds/src";
 
 export const HomeScreen = () => {
-  // ref
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const [value, onChangeText] = useState<string>("");
+  const [filteredProducts, setFilteredProducts] = useState<string[]>([]);
 
-  // variables
-  const snapPoints = useMemo(() => ["25%", "50%"], []);
+  const products = [
+    "batata",
+    "batata doce",
+    "batata frita",
+    "batata assada",
+    "feijão",
+    "feijão preto",
+    "feijão branco",
+    "arroz",
+    "arroz integral",
+    "arroz branco",
+  ];
 
-  // callbacks
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
-  }, []);
+  const onFilterProducts = (value: string) => {
+    if (value) {
+      const filtered = products.filter(product =>
+        product.toLowerCase().includes(value.toLowerCase()),
+      );
 
-  // renders
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts([]);
+    }
+  };
+
   return (
-    <BottomSheetModalProvider>
-      <View style={styles.container}>
-        <Button
-          onPress={handlePresentModalPress}
-          title="Present Modal"
-          color="black"
-        />
-        <BottomSheetModal
-          ref={bottomSheetModalRef}
-          index={1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}>
-          <BottomSheetView style={styles.contentContainer}>
-            <Text>Awesome 🎉</Text>
-          </BottomSheetView>
-        </BottomSheetModal>
-      </View>
-    </BottomSheetModalProvider>
+    <Page>
+      <Input value={""} onChangeText={onChangeText} />
+      <Spacing size="XS" />
+      <InputSearch
+        value={value}
+        onChange={onChangeText}
+        data={filteredProducts}
+        onSearch={onFilterProducts}
+        onItemClick={value => console.log(value)}
+        inputProps={{label: "name"}}
+      />
+      <Spacing size="XS" />
+      <Input value={value} onChangeText={onChangeText} />
+    </Page>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: "center",
-    backgroundColor: "grey",
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: "center",
-  },
-});
