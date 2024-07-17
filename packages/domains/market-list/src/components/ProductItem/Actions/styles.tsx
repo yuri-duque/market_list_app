@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import {Icon} from "@core/ds";
 
 export const ActionsContainer = styled.View`
   height: 100%;
@@ -8,8 +7,8 @@ export const ActionsContainer = styled.View`
   justify-content: space-between;
 `;
 
-export const TrashIcon = styled(Icon)`
+export const TrashIconContainer = styled.View`
   background-color: ${({theme}) => theme.colors.light};
-  padding: ${({theme}) => theme.sizeVariations.XXS}px;
   border-radius: ${({theme}) => theme.sizeVariations.XS}px;
+  padding: ${({theme}) => theme.sizeVariations.XXS}px;
 `;

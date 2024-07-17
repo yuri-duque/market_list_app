@@ -51,6 +51,7 @@ export const AppTheme: AppThemeType = {
     XS: 8,
     S: 12,
     M: 16,
+    XM: 20,
     L: 24,
     XL: 32,
     XXL: 40,

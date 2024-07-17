@@ -5,9 +5,12 @@ export class BaseProductService {
   private auth = new Auth();
   private repository: FirestoreRepository<BaseProduct>;
 
-  constructor(userId: string) {
+  constructor() {
     this.repository = new FirestoreRepository(firebase =>
-      firebase.collection("users").doc(this.auth.userId).collection("products"),
+      firebase
+        .collection("users")
+        .doc(this.auth.userId)
+        .collection("baseProducts"),
     );
   }
 

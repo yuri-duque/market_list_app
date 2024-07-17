@@ -49,6 +49,7 @@ export type AppThemeType = {
     XS: number;
     S: number;
     M: number;
+    XM: number;
     L: number;
     XL: number;
     XXL: number;

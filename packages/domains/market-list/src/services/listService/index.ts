@@ -1,5 +1,7 @@
 import {Auth, FirestoreRepository} from "@core/integration";
 import {List} from "../../types/List";
+import {ProductHistoryService} from "../productHistoryService";
+import {ProductListService} from "../productListService";
 
 export class ListService {
   private auth = new Auth();
@@ -23,15 +25,28 @@ export class ListService {
     return this.save(newList);
   }
 
+  async finish(id: string) {
+    const productListService = new ProductListService(id);
+    const productHistoryService = new ProductHistoryService();
+
+    const products = await productListService.getAll();
+    const productsOnCart = products.filter(product => product.addedAtCart);
+
+    await productHistoryService.saveAll(productsOnCart);
+
+    // await this.delete(id);
+    // return this.start();
+  }
+
   private save(list: List): Promise<List> {
     return this.repository.save(list);
   }
 
-  getAll(): Promise<List[]> {
+  private getAll(): Promise<List[]> {
     return this.repository.getAll();
   }
 
-  getById(id: string): Promise<List | null> {
-    return this.repository.getById(id);
+  private delete(id: string): Promise<void> {
+    return this.repository.delete(id);
   }
 }

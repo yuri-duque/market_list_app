@@ -14,7 +14,7 @@ type BaseCollection = (
 ) => FirebaseFirestoreTypes.CollectionReference<FirebaseFirestoreTypes.DocumentData>;
 
 export class FirestoreRepository<T extends FirestoreDocument> {
-  protected db: FirebaseFirestoreTypes.CollectionReference<FirebaseFirestoreTypes.DocumentData>;
+  db: FirebaseFirestoreTypes.CollectionReference<FirebaseFirestoreTypes.DocumentData>;
 
   constructor(collection: BaseCollection) {
     this.db = collection(firebase());

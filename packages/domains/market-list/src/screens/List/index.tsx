@@ -5,11 +5,11 @@ import {BottomSheetModalMethods} from "@gorhom/bottom-sheet/lib/typescript/types
 import {ProductList} from "../../components/ProductsList";
 import {ProductListActions} from "../../components/ProductsList/Actions";
 import {AddProductOnListModal} from "../../components/ProductsList/AddProductOnListModal";
-import {ListService} from "../../services";
+import {ListService, ProductHistoryService} from "../../services";
 import {List} from "../../types";
 
 export const ListScreen = () => {
-  const modalAddProductOnList = useRef<BottomSheetModal>(null);
+  const modalRef = useRef<BottomSheetModal>(null);
   const loading = useLoading();
   const listService = new ListService();
 
@@ -27,17 +27,22 @@ export const ListScreen = () => {
     loading.setVisible(false);
   };
 
-  const openModal = (ref: React.RefObject<BottomSheetModalMethods>) => {
-    ref.current?.present();
+  const openModal = () => {
+    modalRef.current?.present();
   };
 
-  const onCloseModal = (ref: React.RefObject<BottomSheetModalMethods>) => {
-    if (ref === modalAddProductOnList) {
-      setUpdateList(updateList + 1);
-    }
+  const onCloseModal = () => {
+    setUpdateList(updateList + 1);
+    modalRef.current?.forceClose();
+    modalRef.current?.dismiss();
+  };
 
-    ref.current?.forceClose();
-    ref.current?.dismiss();
+  const onFinishList = async () => {
+    loading.setVisible(true);
+    if (list && list.id) {
+      await listService.finish(list.id);
+    }
+    loading.setVisible(false);
   };
 
   return (
@@ -47,17 +52,14 @@ export const ListScreen = () => {
           <ProductList listId={list.id as string} updateList={updateList} />
         )}
         <ProductListActions
-          listId={list?.id as string}
-          modalRef={modalAddProductOnList}
-          onOpenModal={() => openModal(modalAddProductOnList)}
+          onOpenModal={openModal}
+          onFinishList={onFinishList}
         />
 
-        <Modal modalRef={modalAddProductOnList} snapPoints={"50%"}>
+        <Modal modalRef={modalRef} snapPoints={"50%"}>
           <AddProductOnListModal
             listId={list?.id as string}
-            onCloseModal={() => {
-              onCloseModal(modalAddProductOnList);
-            }}
+            onCloseModal={onCloseModal}
           />
         </Modal>
       </BottomSheetModalProvider>

@@ -37,10 +37,7 @@ export const ProductItem = ({
 
         <ProductItemDetails product={product} />
 
-        <ProductItemActions
-          product={product}
-          onDeleteProduct={onDeleteProduct}
-        />
+        <ProductItemActions onDeleteProduct={onDeleteProduct} />
       </S.CardContent>
     </Card>
   );

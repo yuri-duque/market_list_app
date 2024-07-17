@@ -47,8 +47,6 @@ export const AddProductOnCartModal = ({
         addedAtCart: true,
       };
 
-      console.log("UPDATE", newProduct);
-
       await productListService.update(newProduct);
 
       onCloseModal();

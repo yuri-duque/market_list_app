@@ -1,21 +1,22 @@
-import {Button, Icon, Modal} from "@core/ds";
-import {BottomSheetModalMethods} from "@gorhom/bottom-sheet/lib/typescript/types";
+import {Button, Icon} from "@core/ds";
 import * as S from "./styles";
 
 export type ProductListActionsProps = {
-  listId: string;
-  modalRef: React.RefObject<BottomSheetModalMethods>;
   onOpenModal: () => void;
+  onFinishList: () => void;
 };
 
-export const ProductListActions = ({onOpenModal}: ProductListActionsProps) => {
+export const ProductListActions = ({
+  onOpenModal,
+  onFinishList,
+}: ProductListActionsProps) => {
   return (
     <>
       <S.ButtonsContainer>
         <S.ButtonFinishList>
           <Button
             text="Finish"
-            onPress={() => {}}
+            onPress={onFinishList}
             color="success"
             icon="check-bold"
             textProps={{size: "L"}}

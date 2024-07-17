@@ -1,26 +1,37 @@
-import {Auth, FirestoreDocument, FirestoreRepository} from "@core/integration";
-import {ProductHistory} from "../../types";
+import {Auth, FirestoreRepository} from "@core/integration";
+import {Product, ProductHistory} from "../../types";
 
 export class ProductHistoryService {
   private auth = new Auth();
   private repository: FirestoreRepository<ProductHistory>;
 
-  constructor(prodcutId: string) {
+  constructor() {
     this.repository = new FirestoreRepository(firebase =>
       firebase
         .collection("users")
         .doc(this.auth.userId)
-        .collection("products")
-        .doc(prodcutId)
-        .collection("history"),
+        .collection("baseProducts"),
     );
   }
 
-  save(product: ProductHistory): Promise<ProductHistory> {
-    return this.repository.save(product);
+  async saveAll(products: Product[]) {
+    const productHistories: ProductHistory[] = products.map(product => {
+      const newProductHistory: ProductHistory = {
+        id: product.id,
+        name: product.name as string,
+        price: product.price as number,
+        quantity: product.quantity as number,
+      };
+
+      return newProductHistory;
+    });
+
+    productHistories.forEach(productHistory => {
+      this.save(productHistory);
+    });
   }
 
-  getAll(): Promise<ProductHistory[]> {
-    return this.repository.getAll();
+  async save(productHistory: ProductHistory) {
+    return this.repository.db.doc(productHistory.id).set(productHistory);
   }
 }
