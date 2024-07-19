@@ -8,7 +8,7 @@ type ButtonIconProps = Omit<IconProps, "name">;
 
 export type ButtonProps = ButtoncontainerProps &
   ButtonSizeProps & {
-    text: string;
+    text?: string;
     textProps?: TextProps;
     icon?: string;
     iconProps?: ButtonIconProps;

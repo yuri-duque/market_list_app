@@ -53,5 +53,6 @@ export type AppThemeType = {
     L: number;
     XL: number;
     XXL: number;
+    XXXL: number;
   };
 };

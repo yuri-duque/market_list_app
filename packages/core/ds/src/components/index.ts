@@ -9,5 +9,6 @@ export * from "./Label";
 export * from "./Loading";
 export * from "./Modal";
 export * from "./Page";
+export * from "./QuantityInput";
 export * from "./Spacing";
 export * from "./Typography";
