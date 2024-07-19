@@ -8,4 +8,5 @@ export type CardProps = {
   backgroundColor?: keyof AppThemeType["colors"];
   flex?: boolean;
   margin?: keyof AppThemeType["sizeVariations"];
+  padding?: keyof AppThemeType["sizeVariations"];
 };

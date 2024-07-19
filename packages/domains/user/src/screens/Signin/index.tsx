@@ -29,15 +29,12 @@ export const SigninScreen = () => {
 
   const goToMarketList = () => {
     navigation.navigate("MarketList");
-  }
+  };
 
   const onLogin = async () => {
     loading.setVisible(true);
     try {
-      await userService.login(
-        values.email.trim(),
-        values.password.trim(),
-      );
+      await userService.login(values.email.trim(), values.password.trim());
       resetForm();
       goToMarketList();
     } catch (error: any) {
@@ -65,6 +62,7 @@ export const SigninScreen = () => {
     <Page>
       <S.Container>
         <Card
+          padding="M"
           header={
             <Typography
               text="Login"

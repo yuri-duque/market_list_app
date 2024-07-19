@@ -18,5 +18,4 @@ const buttonSizeVariations = {
 
 export const ButtonSize = styled.View<ButtonSizeProps>`
   ${({size}) => buttonSizeVariations[size ?? "M"]}
-  flex: 1;
 `;
