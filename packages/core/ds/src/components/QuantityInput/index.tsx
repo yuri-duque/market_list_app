@@ -23,9 +23,7 @@ export const QuantityInput = ({
 
   const onDecrement = () => {
     const newValue = value - 1;
-    console.log("NEW VALUE", newValue);
     if (!negative && newValue <= 0) {
-      console.log("ENTROU", {negative, newValue});
       onChange(0);
       return;
     }
@@ -53,6 +51,7 @@ export const QuantityInput = ({
           value={value.toString()}
           onChangeText={onChangeText}
           error={error}
+          type="numeric"
         />
       </S.InputContainer>
 

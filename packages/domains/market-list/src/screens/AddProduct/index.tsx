@@ -2,14 +2,7 @@ import {useEffect, useState} from "react";
 import Toast from "react-native-toast-message";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {
-  Button,
-  Input,
-  InputSearch,
-  Page,
-  QuantityInput,
-  useLoading,
-} from "@core/ds";
+import {Button, InputSearch, Page, QuantityInput, useLoading} from "@core/ds";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {MarketStackParamList} from "../../routes";
 import {BaseProductService, ProductListService} from "../../services";
@@ -74,7 +67,7 @@ export const AddProductScreen = ({route, navigation}: Props) => {
 
   const initialValues = {
     name: "",
-    quantity: 0,
+    quantity: 1,
   };
 
   const validationSchema = Yup.object().shape({

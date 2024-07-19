@@ -1,12 +1,17 @@
 import {useEffect, useRef, useState} from "react";
-import {Modal, Page, useLoading} from "@core/ds";
+import {Page, useLoading} from "@core/ds";
 import {BottomSheetModal} from "@gorhom/bottom-sheet";
+import {useIsFocused} from "@react-navigation/native";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {ProductList} from "../../components/ProductsList";
 import {ProductListActions} from "../../components/ProductsList/Actions";
+import {MarketStackParamList} from "../../routes";
 import {ListService} from "../../services";
 import {List} from "../../types";
 
-export const ListScreen = () => {
+interface Props extends NativeStackScreenProps<MarketStackParamList, "List"> {}
+
+export const ListScreen = ({route, navigation}: Props) => {
   const modalRef = useRef<BottomSheetModal>(null);
   const loading = useLoading();
   const listService = new ListService();
@@ -18,21 +23,17 @@ export const ListScreen = () => {
     init();
   }, []);
 
+  const focused = useIsFocused();
+
+  useEffect(() => {
+    setUpdateList(updateList + 1);
+  }, [focused]);
+
   const init = async () => {
     loading.setVisible(true);
     const newList = await listService.start();
     setList(newList);
     loading.setVisible(false);
-  };
-
-  const openModal = () => {
-    modalRef.current?.present();
-  };
-
-  const onCloseModal = () => {
-    setUpdateList(updateList + 1);
-    modalRef.current?.forceClose();
-    modalRef.current?.dismiss();
   };
 
   const onFinishList = async () => {

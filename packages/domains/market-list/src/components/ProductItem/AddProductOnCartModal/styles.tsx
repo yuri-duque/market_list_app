@@ -10,5 +10,3 @@ export const InputsContainer = styled.View`
   flex-direction: column;
   gap: ${({theme}) => theme.sizeVariations.XS}px;
 `;
-
-export const ButtonsContainer = styled.View``;

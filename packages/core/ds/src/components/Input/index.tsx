@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {KeyboardTypeOptions, View} from "react-native";
+import {maskValue} from "../../utils";
 import {Icon} from "../Icon";
 import {Label} from "../Label";
 import {Typography} from "../Typography";
@@ -18,10 +19,18 @@ export const Input = ({
   required,
   error,
   type,
+  mask,
   returnKeyType,
   onSubmitEditing,
 }: InputProps) => {
   const [hideText, setHideText] = useState(type === "password");
+
+  const onChange = (newValue: string) => {
+    if (mask) {
+      newValue = maskValue(newValue, mask);
+    }
+    onChangeText(newValue);
+  };
 
   return (
     <View>
@@ -35,7 +44,7 @@ export const Input = ({
 
               <S.Input
                 value={value}
-                onChangeText={onChangeText}
+                onChangeText={onChange}
                 placeholder={label}
                 secureTextEntry={hideText}
                 keyboardType={type as KeyboardTypeOptions}

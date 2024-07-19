@@ -2,7 +2,7 @@ import {Keyboard} from "react-native";
 import Toast from "react-native-toast-message";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {Button, Input, useLoading} from "@core/ds";
+import {Button, Input, QuantityInput, useLoading} from "@core/ds";
 import {ProductListService} from "../../../services";
 import {Product} from "../../../types";
 import * as S from "./styles";
@@ -28,11 +28,11 @@ export const AddProductOnCartModal = ({
 
   const initialValues = {
     price: product.price?.toString() || "",
-    quantity: product.quantity?.toString() || "",
+    quantity: product.quantity || 0,
   };
 
   const validationSchema = Yup.object().shape({
-    price: Yup.number().required("Price is required"),
+    price: Yup.string().required("Price is required"),
     quantity: Yup.number().integer().required("Quantity is required"),
   });
 
@@ -40,9 +40,11 @@ export const AddProductOnCartModal = ({
     Keyboard.dismiss();
     loading.setVisible(true);
     try {
+      const newPrice = values.price.replace(/\D/g, "");
+
       const newProduct: Product = {
         ...product,
-        price: Number(values.price),
+        price: Number(newPrice) / 100,
         quantity: Number(values.quantity),
         addedAtCart: true,
       };
@@ -70,24 +72,24 @@ export const AddProductOnCartModal = ({
           value={values.price}
           error={errors.price}
           onChangeText={value => setFieldValue(fieldName.price, value)}
-        />
-        <Input
           type="numeric"
+          mask="currency"
+        />
+        <QuantityInput
           label="Quantity"
           value={values.quantity}
           error={errors.quantity}
-          onChangeText={value => setFieldValue(fieldName.quantity, value)}
+          onChange={value => setFieldValue(fieldName.quantity, value)}
+          negative={false}
         />
       </S.InputsContainer>
 
-      <S.ButtonsContainer>
-        <Button
-          text="Put on cart"
-          onPress={handleSubmit}
-          color="success"
-          icon="cart"
-        />
-      </S.ButtonsContainer>
+      <Button
+        text="Put on cart"
+        onPress={handleSubmit}
+        color="success"
+        icon="cart"
+      />
     </S.Container>
   );
 };
