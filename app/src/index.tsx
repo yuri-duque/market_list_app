@@ -11,7 +11,9 @@ export const App = () => {
       <GestureHandlerRootView>
         <ThemeProvider>
           <LoadingProvider>
-            <Routes />
+            <BottomSheetModalProvider>
+              <Routes />
+            </BottomSheetModalProvider>
           </LoadingProvider>
         </ThemeProvider>
       </GestureHandlerRootView>

@@ -7,9 +7,9 @@ import {
 } from "@react-navigation/native-stack";
 import {AddProductScreen, ListScreen} from "../../screens";
 
-type MarketStackParamList = {
+export type MarketStackParamList = {
   List: undefined;
-  AddProduct: undefined;
+  AddProduct: {listId: string};
   Home: undefined;
 };
 
@@ -24,7 +24,11 @@ export const MarketStack = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions} initialRouteName="List">
       <Stack.Screen name="List" component={ListScreen} />
-      <Stack.Screen name="AddProduct" component={AddProductScreen} />
+      <Stack.Screen
+        name="AddProduct"
+        component={AddProductScreen}
+        options={{title: "Add Product", headerShown: true}}
+      />
     </Stack.Navigator>
   );
 };

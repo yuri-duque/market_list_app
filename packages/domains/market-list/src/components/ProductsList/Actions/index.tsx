@@ -1,15 +1,22 @@
 import {Button, Icon} from "@core/ds";
+import {useMarketStack} from "../../../routes";
 import * as S from "./styles";
 
 export type ProductListActionsProps = {
-  onOpenModal: () => void;
+  listId: string;
   onFinishList: () => void;
 };
 
 export const ProductListActions = ({
-  onOpenModal,
+  listId,
   onFinishList,
 }: ProductListActionsProps) => {
+  const navigation = useMarketStack();
+
+  const goToAddProduct = () => {
+    navigation.navigate("AddProduct", {listId});
+  };
+
   return (
     <>
       <S.ButtonsContainer>
@@ -24,7 +31,7 @@ export const ProductListActions = ({
           />
         </S.ButtonFinishList>
 
-        <S.ButtonAddProduct onPress={onOpenModal}>
+        <S.ButtonAddProduct onPress={goToAddProduct}>
           <Icon name="plus" size="XL" color="white" />
         </S.ButtonAddProduct>
       </S.ButtonsContainer>

@@ -1,22 +1,27 @@
 import {useEffect, useState} from "react";
-import {Keyboard} from "react-native";
 import Toast from "react-native-toast-message";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {Button, Input, InputSearch, useLoading} from "@core/ds";
-import {BaseProductService, ProductListService} from "../../../services";
-import {BaseProduct, Product, ProductHistory} from "../../../types";
+import {
+  Button,
+  Input,
+  InputSearch,
+  Page,
+  QuantityInput,
+  useLoading,
+} from "@core/ds";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {MarketStackParamList} from "../../routes";
+import {BaseProductService, ProductListService} from "../../services";
+import {BaseProduct, Product} from "../../types";
 import * as S from "./styles";
 
-export type AddProductModalProps = {
-  listId: string;
-  onCloseModal: () => void;
-};
+interface Props
+  extends NativeStackScreenProps<MarketStackParamList, "AddProduct"> {}
 
-export const AddProductOnListModal = ({
-  listId,
-  onCloseModal,
-}: AddProductModalProps) => {
+export const AddProductScreen = ({route, navigation}: Props) => {
+  const {listId} = route.params;
+
   const loading = useLoading();
   const productListService = new ProductListService(listId);
   const baseProductService = new BaseProductService();
@@ -69,7 +74,7 @@ export const AddProductOnListModal = ({
 
   const initialValues = {
     name: "",
-    quantity: "1",
+    quantity: 0,
   };
 
   const validationSchema = Yup.object().shape({
@@ -78,7 +83,6 @@ export const AddProductOnListModal = ({
   });
 
   const onSubmit = async () => {
-    Keyboard.dismiss();
     loading.setVisible(true);
     try {
       let product: Product;
@@ -98,7 +102,8 @@ export const AddProductOnListModal = ({
       product.addedAtCart = false;
 
       await productListService.save(product);
-      onCloseModal();
+
+      navigation.navigate("List");
     } catch (error: any) {
       Toast.show({type: "", text1: "Error to add product."});
     }
@@ -112,30 +117,34 @@ export const AddProductOnListModal = ({
   });
 
   return (
-    <S.Container>
-      <S.InputsContainer>
-        <InputSearch
-          value={values.name}
-          onChange={value => setFieldValue(fieldName.name, value)}
-          data={filteredBaseProducts}
-          dataKey="name"
-          onSearch={onSearchBaseProducts}
-          onItemClick={onSelectBaseProduct}
-          maxHeight={250}
-          inputProps={{label: "name"}}
-        />
-        <Input
-          type="numeric"
-          label="Quantity"
-          value={values.quantity}
-          error={errors.quantity}
-          onChangeText={value => setFieldValue(fieldName.quantity, value)}
-        />
-      </S.InputsContainer>
+    <Page>
+      <S.Container>
+        <S.InputsContainer>
+          <InputSearch
+            value={values.name}
+            onChange={value => setFieldValue(fieldName.name, value)}
+            data={filteredBaseProducts}
+            dataKey="name"
+            onSearch={onSearchBaseProducts}
+            onItemClick={onSelectBaseProduct}
+            maxHeight={250}
+            inputProps={{label: "name"}}
+          />
+          <QuantityInput
+            label="Quantity"
+            value={values.quantity}
+            error={errors.quantity}
+            onChange={value => setFieldValue(fieldName.quantity, value)}
+            negative={false}
+          />
+        </S.InputsContainer>
 
-      <S.ButtonsContainer>
-        <Button text="Add product" onPress={handleSubmit} />
-      </S.ButtonsContainer>
-    </S.Container>
+        <Button
+          text="Add product"
+          onPress={handleSubmit}
+          textProps={{weight: "bold"}}
+        />
+      </S.Container>
+    </Page>
   );
 };

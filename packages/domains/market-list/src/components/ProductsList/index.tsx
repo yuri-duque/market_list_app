@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
-import {useLoading} from "@core/ds";
+import {ScrollView} from "react-native";
+import {Spacing, useLoading} from "@core/ds";
 import {ProductListService} from "../../services";
 import {Product} from "../../types";
-import {ProductListList} from "./List";
+import {ProductItem} from "../ProductItem";
+import {ProductListHeader} from "./Header";
 import * as S from "./styles";
 
 export type ProductListProps = {
@@ -38,11 +40,22 @@ export const ProductList = ({listId, updateList}: ProductListProps) => {
 
   return (
     <S.Container>
-      <ProductListList
-        listId={listId}
-        products={products}
-        getProducts={getProducts}
-      />
+      <ProductListHeader products={products} />
+
+      <ScrollView>
+        <S.ListContainer>
+          <Spacing size="XS" />
+          {products.map(product => (
+            <ProductItem
+              key={product.id}
+              listId={listId}
+              product={product}
+              refreshList={getProducts}
+            />
+          ))}
+          <Spacing size="XS" />
+        </S.ListContainer>
+      </ScrollView>
     </S.Container>
   );
 };
