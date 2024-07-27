@@ -24,15 +24,15 @@ export const getPlaceholderTextColor = (variation?: InputVariations) => {
 
 export const InputContainer = styled.View<InputContainerProps>`
   border: 1px solid;
-  background-color: #fff;
+  background-color: ${({theme}) => theme.colors.white};
   border-radius: 8px;
 
   opacity: ${prop => (prop.disabled ? 0.5 : 1)};
 
   elevation: 4;
-  shadow-offset: 2px 2px;
-  shadow-opacity: 0.25;
-  shadow-radius: 4px;
+  shadow-offset: 1px 1px;
+  shadow-opacity: 0.15;
+  shadow-radius: 2px;
 
   ${({variation}) => inputVariations[variation ?? "primary"]};
 `;

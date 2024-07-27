@@ -1,92 +1,72 @@
 import {useState} from "react";
-import {FlatList, View} from "react-native";
-import {TouchableOpacity} from "@gorhom/bottom-sheet";
-import {Card} from "../Card";
-import {Divisor} from "../Divisor";
-import {Input} from "../Input";
-import {InputProps} from "../Input/types";
-import {Spacing} from "../Spacing/styles";
-import {Typography} from "../Typography";
+import {Dimensions} from "react-native";
+import {
+  AutocompleteDropdown,
+  AutocompleteDropdownItem,
+} from "react-native-autocomplete-dropdown";
+import {useTheme} from "styled-components/native";
 import * as S from "./styles";
 
 type InputSearchProps = {
   value: string;
-  onChange: (text: string) => void;
   data: string[] | any[];
-  dataKey?: string;
-  onSearch: (value: string) => void;
-  onItemClick: (item: any) => void;
-  maxHeight?: number;
-  inputProps: Omit<InputProps, "value" | "onChangeText">;
+  onChange: (text: string) => void;
+  onSelectItem: (item: any) => void;
+};
+
+const mapData = (data: string[]) => {
+  const autoCompleteData: AutocompleteDropdownItem[] = [];
+
+  data.forEach((item: any, index: number) => {
+    autoCompleteData.push({
+      id: item.id,
+      title: item.name,
+    });
+  });
+
+  return autoCompleteData;
 };
 
 export const InputSearch = ({
   value,
-  onChange,
   data,
-  dataKey,
-  onSearch,
-  onItemClick,
-  maxHeight,
-  inputProps,
+  onChange,
+  onSelectItem,
 }: InputSearchProps) => {
-  const [inputHeight, setInputHeight] = useState(40);
-  const onChangeValue = (value: string) => {
-    onSearch(value);
-    onChange(value);
+  const theme = useTheme();
+  const styles = S.getStyle(theme);
+  const defaultData = mapData(data);
+  const [filteredData, setFilteredData] = useState(defaultData);
+
+  const onAutocompleteSelectItem = (item: AutocompleteDropdownItem | null) => {
+    if (item) {
+      const itemData = data.find((dataItem: any) => dataItem.id === item.id);
+      onSelectItem(itemData);
+    }
   };
 
-  const getText = (item: any) => {
-    if (typeof item === "string") {
-      return item;
-    }
-
-    if (dataKey) {
-      return item[dataKey];
-    }
+  const onFilter = (text: string) => {
+    onChange(text);
+    const filteredItems = defaultData.filter(item =>
+      item.title?.toLowerCase().includes(text.toLowerCase()),
+    );
+    setFilteredData(filteredItems);
   };
 
   return (
-    <S.InputContainer>
-      <View
-        onLayout={event => {
-          setInputHeight(event.nativeEvent.layout.height);
-        }}>
-        <Input value={value} onChangeText={onChangeValue} {...inputProps} />
-      </View>
-
-      <S.ListContainer top={inputHeight} maxHeight={maxHeight}>
-        {data && data.length !== 0 && (
-          <>
-            <Card>
-              <S.CardContent>
-                <FlatList
-                  data={data}
-                  renderItem={({item, index}) => {
-                    const isFrst = index === 0;
-                    const isLast = index === data.length - 1;
-                    return (
-                      <>
-                        <TouchableOpacity onPress={() => onItemClick(item)}>
-                          {!isFrst && <Spacing size="XS" />}
-
-                          <Typography
-                            text={getText(item)}
-                            size="S"
-                            color="secondary"
-                          />
-                          {!isLast && <Spacing size="XS" />}
-                        </TouchableOpacity>
-                        {!isLast && <Divisor />}
-                      </>
-                    );
-                  }}
-                />
-              </S.CardContent>
-            </Card>
-          </>
-        )}
-      </S.ListContainer>
-    </S.InputContainer>
+    <AutocompleteDropdown
+      initialValue={value}
+      onChangeText={onFilter}
+      dataSet={filteredData}
+      onSelectItem={onAutocompleteSelectItem}
+      caseSensitive={false}
+      ignoreAccents={true}
+      trimSearchText={true}
+      clearOnFocus={false}
+      closeOnBlur={true}
+      closeOnSubmit={false}
+      suggestionsListMaxHeight={Dimensions.get("window").height * 0.4}
+      inputContainerStyle={styles.input}
+    />
   );
 };

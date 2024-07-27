@@ -1,11 +1,14 @@
-import {SafeAreaView} from "react-native-safe-area-context";
+import {PageSafeArea, PageSafeAreaProps} from "../SaveArea";
 import * as S from "./styles";
-import {PageProps} from "./types";
 
-export const Page = ({children, noPadding}: PageProps) => {
+export type PageProps = PageSafeAreaProps & {
+  noPadding?: boolean;
+};
+
+export const Page = (props: PageProps) => {
   return (
-    <SafeAreaView>
-      <S.Container noPadding={noPadding}>{children}</S.Container>
-    </SafeAreaView>
+    <PageSafeArea {...props}>
+      <S.Container noPadding={props.noPadding}>{props.children}</S.Container>
+    </PageSafeArea>
   );
 };

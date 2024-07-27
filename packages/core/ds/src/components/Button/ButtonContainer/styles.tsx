@@ -39,10 +39,9 @@ export const ButtonContainer = styled.TouchableOpacity<ButtoncontainerProps>`
 
   elevation: 4;
   shadow-color: ${prop => prop.theme.colors.dark};
-  shadow-offset: 2px 2px;
-  shadow-opacity: 0.5;
-  shadow-radius: 4px;
-
+  shadow-offset: 1px 1px;
+  shadow-opacity: 0.15;
+  shadow-radius: 2px;
   ${({color, variation}) =>
     getColor(color ?? "primary", variation ?? "contained")};
 `;

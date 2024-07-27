@@ -1,4 +1,4 @@
-import {PageSafeAreaProps} from "./SaveArea";
+import {PageSafeAreaProps} from "../SaveArea";
 
 export type FormPageProps = {
   noSafeArea?: PageSafeAreaProps["noSafeArea"];

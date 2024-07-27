@@ -1,4 +1,5 @@
-import {ReturnKeyTypeOptions} from "react-native";
+import React from "react";
+import {ReturnKeyTypeOptions, TextInput} from "react-native";
 import {Masks} from "../../utils";
 import {InputContainerProps} from "./InputContainer/types";
 import {InputSizeProps} from "./InputSize/types";
@@ -14,6 +15,7 @@ export type InputProps = InputContainerProps &
     error?: string;
     type?: InputTypes;
     mask?: Masks;
+    onTouchStart?: () => void;
 
     returnKeyType?: ReturnKeyTypeOptions;
     onSubmitEditing?: () => void;

@@ -23,9 +23,9 @@ export const CardStyled = styled.View<{
     padding ? theme.sizeVariations[padding] : 0}px;
 
   elevation: 4;
-  shadow-offset: 2px 2px;
-  shadow-opacity: 0.25;
-  shadow-radius: 4px;
+  shadow-offset: 1px 1px;
+  shadow-opacity: 0.15;
+  shadow-radius: 2px;
 `;
 
 export const CardHeader = styled.View`

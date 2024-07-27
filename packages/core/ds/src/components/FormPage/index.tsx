@@ -7,7 +7,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import {useHeaderHeight} from "@react-navigation/elements";
-import {PageSafeArea} from "./SaveArea";
+import {PageSafeArea} from "../SaveArea";
 import * as S from "./styles";
 import {FormPageProps} from "./types";
 

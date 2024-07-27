@@ -1,4 +1,5 @@
 import * as React from "react";
+import {AutocompleteDropdownContextProvider} from "react-native-autocomplete-dropdown";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 import {LoadingProvider, ThemeProvider} from "@core/ds";
@@ -10,11 +11,13 @@ export const App = () => {
     <>
       <GestureHandlerRootView>
         <ThemeProvider>
-          <LoadingProvider>
-            <BottomSheetModalProvider>
-              <Routes />
-            </BottomSheetModalProvider>
-          </LoadingProvider>
+          <AutocompleteDropdownContextProvider>
+            <LoadingProvider>
+              <BottomSheetModalProvider>
+                <Routes />
+              </BottomSheetModalProvider>
+            </LoadingProvider>
+          </AutocompleteDropdownContextProvider>
         </ThemeProvider>
       </GestureHandlerRootView>
 

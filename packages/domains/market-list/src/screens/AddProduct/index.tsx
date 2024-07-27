@@ -35,6 +35,7 @@ export const AddProductScreen = ({route, navigation}: Props) => {
     loading.setVisible(true);
     try {
       const products = await baseProductService.getAll();
+      console.log("PRODUCTS", products);
       setBaseProducts(products);
     } catch (error: any) {
       Toast.show({type: "", text1: "Error to get products."});
@@ -110,18 +111,14 @@ export const AddProductScreen = ({route, navigation}: Props) => {
   });
 
   return (
-    <Page>
+    <Page hasHeader>
       <S.Container>
         <S.InputsContainer>
           <InputSearch
             value={values.name}
+            data={baseProducts}
             onChange={value => setFieldValue(fieldName.name, value)}
-            data={filteredBaseProducts}
-            dataKey="name"
-            onSearch={onSearchBaseProducts}
-            onItemClick={onSelectBaseProduct}
-            maxHeight={250}
-            inputProps={{label: "name"}}
+            onSelectItem={onSelectBaseProduct}
           />
           <QuantityInput
             label="Quantity"
