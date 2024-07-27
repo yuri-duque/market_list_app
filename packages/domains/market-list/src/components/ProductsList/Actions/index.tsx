@@ -27,12 +27,12 @@ export const ProductListActions = ({
             color="success"
             icon="check-bold"
             textProps={{size: "L"}}
-            iconProps={{size: "L"}}
+            iconProps={{iconSize: "L"}}
           />
         </S.ButtonFinishList>
 
         <S.ButtonAddProduct onPress={goToAddProduct}>
-          <Icon name="plus" size="XL" color="white" />
+          <Icon name="plus" iconSize="XL" color="white" />
         </S.ButtonAddProduct>
       </S.ButtonsContainer>
     </>

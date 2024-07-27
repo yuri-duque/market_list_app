@@ -43,7 +43,11 @@ export const QuantityInput = ({
   return (
     <S.Container>
       <S.ButtonContainer>
-        <Button icon="minus" onPress={onDecrement} iconProps={{size: "L"}} />
+        <Button
+          icon="minus"
+          onPress={onDecrement}
+          iconProps={{iconSize: "L"}}
+        />
       </S.ButtonContainer>
       <S.InputContainer>
         <Input
@@ -56,7 +60,7 @@ export const QuantityInput = ({
       </S.InputContainer>
 
       <S.ButtonContainer>
-        <Button icon="plus" onPress={onIncrement} iconProps={{size: "L"}} />
+        <Button icon="plus" onPress={onIncrement} iconProps={{iconSize: "L"}} />
       </S.ButtonContainer>
     </S.Container>
   );

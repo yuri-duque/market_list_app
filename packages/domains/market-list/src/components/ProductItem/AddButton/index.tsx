@@ -56,7 +56,7 @@ export const ProductItemAddButton = ({
       <S.IconContainer added={product.addedAtCart} onPress={onPress}>
         <Icon
           name={product.addedAtCart ? "cart-arrow-up" : "cart-arrow-down"}
-          size={"XL"}
+          iconSize={"XL"}
           color={product.addedAtCart ? "white" : "secondary"}
         />
       </S.IconContainer>

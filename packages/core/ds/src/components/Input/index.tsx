@@ -20,6 +20,7 @@ export const Input = ({
   error,
   type,
   mask,
+  onTouchStart,
   returnKeyType,
   onSubmitEditing,
 }: InputProps) => {
@@ -51,13 +52,15 @@ export const Input = ({
                 returnKeyType={returnKeyType}
                 onSubmitEditing={onSubmitEditing}
                 placeholderTextColor={getPlaceholderTextColor(variation)}
+                readOnly={disabled}
+                onTouchStart={onTouchStart}
               />
             </S.InputLabel>
 
             {type === "password" && (
               <Icon
                 name={hideText ? "eye-off" : "eye"}
-                size={"L"}
+                iconSize={"L"}
                 onPress={() => setHideText(!hideText)}
               />
             )}

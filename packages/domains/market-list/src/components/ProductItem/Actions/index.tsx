@@ -13,7 +13,7 @@ export const ProductItemActions = ({
     <S.ActionsContainer>
       <TouchableOpacity onPress={onDeleteProduct}>
         <S.TrashIconContainer>
-          <Icon name="trash-can-outline" size="XM" color="secondary" />
+          <Icon name="trash-can-outline" iconSize="XM" color="secondary" />
         </S.TrashIconContainer>
       </TouchableOpacity>
     </S.ActionsContainer>
