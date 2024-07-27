@@ -22,13 +22,17 @@ export class UserService {
   }
 
   async save(newUser: User) {
-    const user = await this.auth.createUser(newUser.email, newUser.password);
+    const user = await this.auth.createUser(
+      newUser.email,
+      newUser.password as string,
+    );
 
     const baseUser: User = {
       ...newUser,
       email: user.email as string,
       id: user.uid,
     };
+    delete baseUser.password;
 
     await this.repository.save(baseUser);
   }
