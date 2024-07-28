@@ -1,13 +1,15 @@
 {
   "name": "gym_app",
-  "version": "1.0.0",
   "main": "index.ts",
   "private": true,
   "scripts": {
+    "clean": "yarn workspaces foreach --all run clean",
+    "build": "yarn workspaces foreach --all run build",
     "dev": "yarn build & npx wurk run dev --parallel",
     "start": "yarn workspaces foreach --all run start",
     "start:dev": "yarn dev & yarn start",
-    "build": "yarn workspaces foreach --all run build"
+    "prerelease": "yarn clean && yarn build",
+    "release": "yarn workspaces foreach --all run release"
   },
   "workspaces": [
     "app",

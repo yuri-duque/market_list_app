@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc-watch --noClear"
+    "dev": "tsc-watch --noClear",
+    "clean": "rm -rf ./dist"
   },
   "dependencies": {
     "@core/ds": "*",

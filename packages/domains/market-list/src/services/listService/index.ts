@@ -37,7 +37,9 @@ export class ListService {
     await this.updateBaseProducts(productsOnCart);
     await this.addNewBaseProducts(productsOnCart);
 
-    await this.delete(id);
+    for (const product of productsOnCart) {
+      await productListService.delete(product.id as string);
+    }
   }
 
   private async updateBaseProducts(products: Product[]) {

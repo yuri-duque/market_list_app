@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "tsc-watch --noClear",
     "build": "tsc && yarn run cp",
-    "cp": "npx copyfiles -u 1 'src/assets/**/*' dist"
+    "cp": "npx copyfiles -u 1 'src/assets/**/*' dist",
+    "clean": "rm -rf ./dist"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.6.3",
