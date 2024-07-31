@@ -8,9 +8,11 @@ export type ProductItemDetailsProps = {
 };
 
 export const ProductItemDetails = ({product}: ProductItemDetailsProps) => {
+  const qtd = product.quantity ?? 1;
+  
   const getPriceFormated = (price?: number) => {
     const value = price ?? 0;
-    return formatPrice(value);
+    return formatPrice(value * qtd);
   };
 
   return (

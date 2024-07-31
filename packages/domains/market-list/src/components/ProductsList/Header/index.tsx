@@ -14,7 +14,7 @@ export const ProductListHeader = ({products}: ProductListHeaderProps) => {
     const productsInCard = products.filter(product => product.addedAtCart);
 
     productsInCard.forEach(product => {
-      total += product.price || 0;
+      total += (product.price || 0) * (product.quantity || 1);
     });
 
     return formatPrice(total);

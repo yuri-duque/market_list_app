@@ -6,7 +6,6 @@ export const Container = styled.View`
 `;
 
 export const InputsContainer = styled.View`
-  flex: 1;
   flex-direction: column;
-  gap: ${({theme}) => theme.sizeVariations.XS}px;
+  gap: ${({theme}) => theme.sizeVariations.S}px;
 `;

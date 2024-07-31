@@ -17,7 +17,17 @@ export class ProductListService {
   }
 
   async getAll(): Promise<Product[]> {
-    return this.repository.getAll();
+    const querySnapshot = await this.repository.db
+      .orderBy("createdAt", "desc")
+      .get();
+
+    const documents: Product[] = [];
+
+    querySnapshot.forEach(doc => {
+      documents.push({id: doc.id, ...doc.data()} as Product);
+    });
+
+    return documents;
   }
 
   save(product: Product): Promise<Product> {

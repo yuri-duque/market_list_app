@@ -1,9 +1,9 @@
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import Toast from "react-native-toast-message";
-import {Icon, Modal, useLoading} from "@core/ds";
+import {Icon, Modal, Spacing, useLoading} from "@core/ds";
 import {BottomSheetModal} from "@gorhom/bottom-sheet";
 import {ProductListService} from "../../../services";
-import {AddProductOnCartModal} from "../AddProductOnCartModal";
+import {ProductForm, ProductFormFields} from "../../ProductForm";
 import {ProductItemProps} from "../types";
 import * as S from "./styles";
 
@@ -13,7 +13,6 @@ export const ProductItemAddButton = ({
   refreshList,
 }: ProductItemProps) => {
   const modalRef = useRef<BottomSheetModal>(null);
-
   const loading = useLoading();
   const productListService = new ProductListService(listId);
 
@@ -62,11 +61,14 @@ export const ProductItemAddButton = ({
       </S.IconContainer>
 
       <Modal modalRef={modalRef} snapPoints={"50%"}>
-        <AddProductOnCartModal
+        <ProductForm
           listId={listId}
           product={product}
-          onCloseModal={onCloseModal}
+          onSubmit={onCloseModal}
+          fields={[ProductFormFields.price, ProductFormFields.quantity]}
+          addOnCart={true}
         />
+        <Spacing size={"L"} />
       </Modal>
     </>
   );

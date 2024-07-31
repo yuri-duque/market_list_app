@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components/native";
+import styled from "styled-components/native";
 import {InputSizeProps} from "./types";
 
 export const InputSize = styled.View<InputSizeProps>`
