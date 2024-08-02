@@ -16,6 +16,10 @@ export class ProductListService {
     );
   }
 
+  async getById(productId: string) {
+    return this.repository.getById(productId);
+  }
+
   async getAll(): Promise<Product[]> {
     const querySnapshot = await this.repository.db
       .orderBy("createdAt", "desc")
