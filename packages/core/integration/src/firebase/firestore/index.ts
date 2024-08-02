@@ -52,14 +52,14 @@ export class FirestoreRepository<T extends FirestoreDocument> {
     await this.db.doc(document.id).update(newDocument);
   }
 
-  async getById(id: string): Promise<T | null> {
+  async getById(id: string): Promise<T | undefined> {
     const snapshot = await this.db.doc(id).get();
 
     if (snapshot.exists) {
       return {id: snapshot.id, ...snapshot.data()} as T;
     }
 
-    return null;
+    return undefined;
   }
 
   async getAll(): Promise<T[]> {

@@ -13,8 +13,8 @@ export const ProductListActions = ({
 }: ProductListActionsProps) => {
   const navigation = useMarketStack();
 
-  const goToAddProduct = () => {
-    navigation.navigate("AddProduct", {listId});
+  const goToProductForm = () => {
+    navigation.navigate("ProductForm", {listId});
   };
 
   return (
@@ -31,7 +31,7 @@ export const ProductListActions = ({
           />
         </S.ButtonFinishList>
 
-        <S.ButtonAddProduct onPress={goToAddProduct}>
+        <S.ButtonAddProduct onPress={goToProductForm}>
           <Icon name="plus" iconSize="XL" color="white" />
         </S.ButtonAddProduct>
       </S.ButtonsContainer>

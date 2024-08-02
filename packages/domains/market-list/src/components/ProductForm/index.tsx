@@ -2,10 +2,11 @@ import {useEffect, useState} from "react";
 import Toast from "react-native-toast-message";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {Button, Input, InputSearch, QuantityInput, useLoading} from "@core/ds";
+import {Button, Input, QuantityInput, useLoading} from "@core/ds";
 import {maskValue} from "@core/ds/src/utils";
-import {BaseProductService, ProductListService} from "../../services";
-import {BaseProduct, Product} from "../../types";
+import {ProductListService} from "../../services";
+import {Product} from "../../types";
+import {BaseProductSelect} from "./BaseProductSelect";
 import * as S from "./styles";
 
 export enum ProductFormFields {
@@ -16,63 +17,36 @@ export enum ProductFormFields {
 
 type ProductFormProps = {
   listId: string;
+  formType: "save" | "addOnCart" | "edit";
   product?: Product;
   onSubmit?: () => void;
-  addOnCart?: boolean;
-  fields?: ProductFormFields[];
 };
 
 export const ProductForm = ({
   listId,
+  formType,
   product,
   onSubmit,
-  addOnCart = false,
-  fields = [
-    ProductFormFields.name,
-    ProductFormFields.price,
-    ProductFormFields.quantity,
-  ],
 }: ProductFormProps) => {
   const loading = useLoading();
   const productListService = new ProductListService(listId);
-  const baseProductService = new BaseProductService();
 
-  const [baseProducts, setBaseProducts] = useState<BaseProduct[]>([]);
-  const [baseProductSelected, setBaseProductSelected] = useState<
-    BaseProduct | undefined
-  >();
+  const [newProduct, setNewProduct] = useState<Product | undefined>(product);
 
   useEffect(() => {
-    getBaseProducts();
-    setProductValues(product);
-  }, []);
+    setProductPrice();
+  }, [newProduct]);
 
-  const getBaseProducts = async () => {
-    loading.setVisible(true);
-    try {
-      const products = await baseProductService.getAll();
-      setBaseProducts(products);
-    } catch (error: any) {
-      Toast.show({type: "", text1: "Error to get products."});
-    }
-    loading.setVisible(false);
-  };
-
-  const setProductValues = (newProduct?: BaseProduct | Product) => {
+  const setProductPrice = () => {
     if (newProduct) {
       const price = (newProduct.price || newProduct.basePrice || 0) * 100;
+
       setValues({
         name: newProduct.name,
         price: maskValue((price || 0).toString(), "currency"),
         quantity: newProduct.quantity || 1,
       });
-      setBaseProductSelected;
     }
-  };
-
-  const onSelectBaseProduct = (selectedProduct: BaseProduct) => {
-    setProductValues(selectedProduct);
-    setBaseProductSelected(selectedProduct);
   };
 
   const initialValues = {
@@ -90,35 +64,21 @@ export const ProductForm = ({
   const handleSave = async () => {
     loading.setVisible(true);
     try {
-      let newProduct = product;
-
-      newProduct = {
-        ...baseProductSelected,
-        ...product,
-        id: product ? product.id : undefined,
-        baseProductId: product
-          ? product.baseProductId
-          : baseProductSelected?.id,
+      const data: Product = {
+        ...newProduct,
         name: values.name,
-        addedAtCart: addOnCart ? addOnCart : product?.addedAtCart || false,
+        price: Number(values.price.replace(/\D/g, "")) / 100,
+        quantity: Number(values.quantity),
       };
 
-      if (!fields.includes(ProductFormFields.name)) {
-        newProduct.name = product?.name || "";
-      }
-      if (fields.includes(ProductFormFields.price)) {
-        newProduct.price = Number(values.price.replace(/\D/g, "")) / 100;
-      }
-      if (fields.includes(ProductFormFields.quantity)) {
-        newProduct.quantity = Number(values.quantity);
+      if (formType === "addOnCart") {
+        data.addedToCart = true;
       }
 
-      if (!product) {
-        console.log("SAVE");
-        await productListService.save(newProduct);
+      if (formType === "save") {
+        await productListService.save(data);
       } else {
-        console.log("UPDATE");
-        await productListService.update(newProduct);
+        await productListService.update(data);
       }
 
       onSubmit?.();
@@ -137,35 +97,29 @@ export const ProductForm = ({
   return (
     <S.Container>
       <S.InputsContainer>
-        {fields.includes(ProductFormFields.name) && (
-          <InputSearch
-            value={"teste"}
-            data={baseProducts}
+        {["save", "edit"].includes(formType) && (
+          <BaseProductSelect
+            value={values.name}
             onChange={value => setFieldValue(ProductFormFields.name, value)}
-            onSelectItem={onSelectBaseProduct}
+            product={newProduct}
+            updateProduct={setNewProduct}
           />
         )}
-        {fields.includes(ProductFormFields.quantity) && (
-          <Input
-            label="Price"
-            value={values.price}
-            error={errors.price}
-            onChangeText={value =>
-              setFieldValue(ProductFormFields.price, value)
-            }
-            type="numeric"
-            mask="currency"
-          />
-        )}
-        {fields.includes(ProductFormFields.price) && (
-          <QuantityInput
-            label="Quantity"
-            value={values.quantity}
-            error={errors.quantity}
-            onChange={value => setFieldValue(ProductFormFields.quantity, value)}
-            negative={false}
-          />
-        )}
+        <Input
+          label="Price"
+          value={values.price}
+          error={errors.price}
+          onChangeText={value => setFieldValue(ProductFormFields.price, value)}
+          type="numeric"
+          mask="currency"
+        />
+        <QuantityInput
+          label="Quantity"
+          value={values.quantity}
+          error={errors.quantity}
+          onChange={value => setFieldValue(ProductFormFields.quantity, value)}
+          negative={false}
+        />
       </S.InputsContainer>
 
       <Button
