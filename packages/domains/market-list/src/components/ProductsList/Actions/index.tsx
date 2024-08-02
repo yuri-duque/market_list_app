@@ -14,7 +14,7 @@ export const ProductListActions = ({
   const navigation = useMarketStack();
 
   const goToProductForm = () => {
-    navigation.navigate("ProductForm", {listId});
+    navigation.navigate("AddProduct", {listId});
   };
 
   return (

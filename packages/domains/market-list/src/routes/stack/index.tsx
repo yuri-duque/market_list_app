@@ -5,11 +5,12 @@ import {
   NativeStackNavigationProp,
   createNativeStackNavigator,
 } from "@react-navigation/native-stack";
-import {ListScreen, ProductFormScreen} from "../../screens";
+import {ListScreen, AddProductScreen, EditProductScreen} from "../../screens";
 
 export type MarketStackParamList = {
   List: undefined;
-  ProductForm: {listId: string; productId?: string};
+  AddProduct: {listId: string};
+  EditProduct: {listId: string; productId?: string};
   Home: undefined;
 };
 
@@ -25,9 +26,14 @@ export const MarketStack = () => {
     <Stack.Navigator screenOptions={screenOptions} initialRouteName="List">
       <Stack.Screen name="List" component={ListScreen} />
       <Stack.Screen
-        name="ProductForm"
-        component={ProductFormScreen}
+        name="AddProduct"
+        component={AddProductScreen}
         options={{title: "Add Product", headerShown: true}}
+      />
+      <Stack.Screen
+        name="EditProduct"
+        component={EditProductScreen}
+        options={{title: "Edit Product", headerShown: true}}
       />
     </Stack.Navigator>
   );

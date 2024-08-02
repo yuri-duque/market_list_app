@@ -1,9 +1,9 @@
-import {useEffect, useRef} from "react";
+import {useRef} from "react";
 import Toast from "react-native-toast-message";
 import {Icon, Modal, Spacing, useLoading} from "@core/ds";
 import {BottomSheetModal} from "@gorhom/bottom-sheet";
 import {ProductListService} from "../../../services";
-import {ProductForm, ProductFormFields} from "../../ProductForm";
+import {ProductForm} from "../../ProductForm";
 import {ProductItemProps} from "../types";
 import * as S from "./styles";
 
@@ -65,8 +65,7 @@ export const ProductItemAddButton = ({
           listId={listId}
           product={product}
           onSubmit={onCloseModal}
-          fields={[ProductFormFields.price, ProductFormFields.quantity]}
-          addOnCart={true}
+          formType="addToCart"
         />
         <Spacing size={"L"} />
       </Modal>

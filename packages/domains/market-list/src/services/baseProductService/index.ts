@@ -70,7 +70,7 @@ export class BaseProductService {
     };
   }
 
-  private async getById(id: string): Promise<BaseProduct | null> {
+  private async getById(id: string): Promise<BaseProduct | undefined> {
     return this.repository.getById(id);
   }
 

@@ -7,9 +7,9 @@ import {ProductListService} from "../../services";
 import {Product} from "../../types";
 
 interface Props
-  extends NativeStackScreenProps<MarketStackParamList, "ProductForm"> {}
+  extends NativeStackScreenProps<MarketStackParamList, "EditProduct"> {}
 
-export const ProductFormScreen = ({route, navigation}: Props) => {
+export const EditProductScreen = ({route, navigation}: Props) => {
   const loading = useLoading();
   const {listId, productId} = route.params;
   const productService = new ProductListService(listId);
@@ -40,7 +40,7 @@ export const ProductFormScreen = ({route, navigation}: Props) => {
     <Page hasHeader>
       <ProductForm
         listId={listId}
-        formType={productId ? "edit" : "save"}
+        formType={"edit"}
         onSubmit={onSubmit}
         product={product}
       />

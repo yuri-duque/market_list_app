@@ -17,7 +17,7 @@ export enum ProductFormFields {
 
 type ProductFormProps = {
   listId: string;
-  formType: "save" | "addOnCart" | "edit";
+  formType: "save" | "addToCart" | "edit";
   product?: Product;
   onSubmit?: () => void;
 };
@@ -36,6 +36,17 @@ export const ProductForm = ({
   useEffect(() => {
     setProductPrice();
   }, [newProduct]);
+
+  useEffect(() => {
+    if(product){
+      setNewProduct(product);
+      setValues({
+        name: product.name,
+        price: maskValue((product?.price || 0).toString(), "currency"),
+        quantity: product.quantity || 1,
+      });
+    }
+  }, [product]);
 
   const setProductPrice = () => {
     if (newProduct) {
@@ -77,7 +88,7 @@ export const ProductForm = ({
         quantity: Number(values.quantity),
       };
 
-      if (formType === "addOnCart") {
+      if (formType === "addToCart") {
         data.addedToCart = true;
       }
 
