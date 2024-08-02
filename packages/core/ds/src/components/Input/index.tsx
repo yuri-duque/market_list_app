@@ -21,6 +21,7 @@ export const Input = ({
   type,
   mask,
   onTouchStart,
+  iconProps,
   returnKeyType,
   onSubmitEditing,
 }: InputProps) => {
@@ -64,6 +65,8 @@ export const Input = ({
                 onPress={() => setHideText(!hideText)}
               />
             )}
+
+            {iconProps && <Icon {...iconProps} />}
           </S.InputContent>
         </InputSize>
       </InputContainer>
