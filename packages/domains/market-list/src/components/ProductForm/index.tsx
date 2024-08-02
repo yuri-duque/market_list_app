@@ -46,6 +46,12 @@ export const ProductForm = ({
         price: maskValue((price || 0).toString(), "currency"),
         quantity: newProduct.quantity || 1,
       });
+    } else {
+      setValues({
+        name: values.name,
+        price: maskValue((0).toString(), "currency"),
+        quantity: values.quantity,
+      });
     }
   };
 

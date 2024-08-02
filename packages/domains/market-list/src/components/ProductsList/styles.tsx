@@ -9,4 +9,5 @@ export const ListContainer = styled.View`
   flex: 1;
   flex-direction: column;
   gap: ${({theme}) => theme.sizeVariations.XS}px;
+  padding: 0 ${({theme}) => theme.sizeVariations.XS}px;
 `;

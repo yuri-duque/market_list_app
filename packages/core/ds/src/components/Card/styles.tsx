@@ -5,8 +5,7 @@ export const CardStyled = styled.View<{
   radius?: CardProps["radius"];
   backgroundColor?: CardProps["backgroundColor"];
   flex?: CardProps["flex"];
-  margin?: CardProps["margin"];
-  padding?: CardProps["margin"];
+  padding?: CardProps["padding"];
 }>`
   flex: ${({flex}) => (flex ? 1 : "none")};
 
@@ -15,9 +14,6 @@ export const CardStyled = styled.View<{
   border-radius: ${({radius, theme}) =>
     radius ? theme.sizeVariations[radius] : theme.sizeVariations.S}px;
   shadow-color: ${prop => prop.theme.colors.dark};
-
-  margin: 0
-    ${({margin, theme}) => (margin ? theme.sizeVariations[margin] : 8)}px;
 
   padding: ${({padding, theme}) =>
     padding ? theme.sizeVariations[padding] : 0}px;

@@ -27,7 +27,7 @@ export const ProductItem = ({
   };
 
   return (
-    <Card margin="XS">
+    <Card>
       <S.CardContent>
         <ProductItemAddButton
           listId={listId}

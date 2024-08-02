@@ -37,20 +37,26 @@ export const InputSearch = ({
   const styles = S.getStyle(theme);
   const defaultData = mapData(data);
   const [filteredData, setFilteredData] = useState(defaultData);
+  const [selectedText, setSelectedText] = useState<string>();
 
   const onAutocompleteSelectItem = (item: AutocompleteDropdownItem | null) => {
     if (item) {
+      setSelectedText(value);
       const itemData = data.find((dataItem: any) => dataItem.id === item.id);
       onSelectItem(itemData);
     }
   };
 
   const onFilter = (text: string) => {
-    onChange(text);
-    const filteredItems = defaultData.filter(item =>
-      item.title?.toLowerCase().includes(text.toLowerCase()),
-    );
-    setFilteredData(filteredItems);
+    if (text !== selectedText) {
+      setSelectedText(undefined);
+      onChange(text);
+
+      const filteredItems = defaultData.filter(item =>
+        item.title?.toLowerCase().includes(text.toLowerCase()),
+      );
+      setFilteredData(filteredItems);
+    }
   };
 
   return (

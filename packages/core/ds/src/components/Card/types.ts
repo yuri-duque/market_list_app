@@ -7,6 +7,5 @@ export type CardProps = {
   radius?: keyof AppThemeType["sizeVariations"];
   backgroundColor?: keyof AppThemeType["colors"];
   flex?: boolean;
-  margin?: keyof AppThemeType["sizeVariations"];
   padding?: keyof AppThemeType["sizeVariations"];
 };

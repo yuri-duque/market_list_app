@@ -32,9 +32,10 @@ export const BaseProductSelect = ({
       const products = await baseProductService.getAll();
       setBaseProducts(products);
     } catch (error: any) {
-      Toast.show({type: "", text1: "Error to get products."});
+      Toast.show({type: "error", text1: "Error to get products."});
+    } finally {
+      loading.setVisible(false);
     }
-    loading.setVisible(false);
   };
 
   const onSelectBaseProduct = (selectedProduct: BaseProduct) => {
@@ -55,8 +56,8 @@ export const BaseProductSelect = ({
   return (
     <InputSearch
       value={value}
-      data={baseProducts}
       onChange={onChange}
+      data={baseProducts}
       onSelectItem={onSelectBaseProduct}
     />
   );
