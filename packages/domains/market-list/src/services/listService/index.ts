@@ -32,7 +32,7 @@ export class ListService {
     const productListService = new ProductListService(id);
 
     const products = await productListService.getAll();
-    const productsOnCart = products.filter(product => product.addedAtCart);
+    const productsOnCart = products.filter(product => product.addedToCart);
 
     await this.updateBaseProducts(productsOnCart);
     await this.addNewBaseProducts(productsOnCart);

@@ -1,7 +1,7 @@
 import {Spacing, Typography} from "@core/ds";
+import {Product} from "../../../types";
 import {formatPrice} from "../../../utils";
 import * as S from "./styles";
-import {Product} from "../../../types";
 
 export type ProductItemDetailsProps = {
   product: Product;
@@ -9,7 +9,7 @@ export type ProductItemDetailsProps = {
 
 export const ProductItemDetails = ({product}: ProductItemDetailsProps) => {
   const qtd = product.quantity ?? 1;
-  
+
   const getPriceFormated = (price?: number) => {
     const value = price ?? 0;
     return formatPrice(value * qtd);
@@ -20,22 +20,22 @@ export const ProductItemDetails = ({product}: ProductItemDetailsProps) => {
       <Typography
         text={product.name}
         size="M"
-        decotarion={product.addedAtCart ? "line-through" : "none"}
+        decotarion={product.addedToCart ? "line-through" : "none"}
       />
       <Spacing size="XXS" />
 
       <S.PriceContainer>
         <Typography
           text={getPriceFormated(product.basePrice)}
-          size={product.addedAtCart ? "XS" : "M"}
+          size={product.addedToCart ? "XS" : "M"}
           color={"secondary"}
-          decotarion={product.addedAtCart ? "line-through" : "none"}
+          decotarion={product.addedToCart ? "line-through" : "none"}
         />
-        {product.addedAtCart && (
+        {product.addedToCart && (
           <Typography
             text={getPriceFormated(product.price)}
             size="M"
-            color={product.addedAtCart ? "success" : "dark"}
+            color={product.addedToCart ? "success" : "dark"}
           />
         )}
       </S.PriceContainer>

@@ -32,7 +32,7 @@ export const ProductItemAddButton = ({
 
       await productListService.update({
         ...product,
-        addedAtCart: !product.addedAtCart,
+        addedToCart: !product.addedToCart,
       });
       refreshList();
 
@@ -43,7 +43,7 @@ export const ProductItemAddButton = ({
   };
 
   const onPress = async () => {
-    if (product.addedAtCart) {
+    if (product.addedToCart) {
       await onRemoveProductFromCart();
     } else {
       openModal();
@@ -52,11 +52,11 @@ export const ProductItemAddButton = ({
 
   return (
     <>
-      <S.IconContainer added={product.addedAtCart} onPress={onPress}>
+      <S.IconContainer added={product.addedToCart} onPress={onPress}>
         <Icon
-          name={product.addedAtCart ? "cart-arrow-up" : "cart-arrow-down"}
+          name={product.addedToCart ? "cart-arrow-up" : "cart-arrow-down"}
           iconSize={"XL"}
-          color={product.addedAtCart ? "white" : "secondary"}
+          color={product.addedToCart ? "white" : "secondary"}
         />
       </S.IconContainer>
 

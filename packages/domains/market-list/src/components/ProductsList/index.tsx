@@ -32,8 +32,8 @@ export const ProductList = ({listId, updateList}: ProductListProps) => {
   };
 
   const orderProducts = (products: Product[]) => {
-    const productsOnCart = products.filter(product => product.addedAtCart);
-    const productsOnList = products.filter(product => !product.addedAtCart);
+    const productsOnCart = products.filter(product => product.addedToCart);
+    const productsOnList = products.filter(product => !product.addedToCart);
 
     return [...productsOnList, ...productsOnCart];
   };

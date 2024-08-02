@@ -11,7 +11,7 @@ export const ProductListHeader = ({products}: ProductListHeaderProps) => {
   const calculateTotal = () => {
     let total = 0;
 
-    const productsInCard = products.filter(product => product.addedAtCart);
+    const productsInCard = products.filter(product => product.addedToCart);
 
     productsInCard.forEach(product => {
       total += (product.price || 0) * (product.quantity || 1);
