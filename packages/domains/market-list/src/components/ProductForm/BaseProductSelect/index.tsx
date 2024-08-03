@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Text, View} from "react-native";
 import Toast from "react-native-toast-message";
-import {InputSearch, useLoading} from "@core/ds";
+import {InputSearch, Typography, useLoading} from "@core/ds";
 import {BaseProductService} from "../../../services";
 import {BaseProduct, Product} from "../../../types";
 
@@ -64,7 +64,7 @@ export const BaseProductSelect = ({
         data={baseProducts}
         renderItem={item => (
           <View>
-            <Text>{item.name}</Text>
+            <Typography text={item.name} color="secondary" weight="semiBold" />
           </View>
         )}
       />

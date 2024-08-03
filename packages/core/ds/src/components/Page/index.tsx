@@ -1,3 +1,4 @@
+import {ScrollView} from "react-native";
 import {PageSafeArea, PageSafeAreaProps} from "../SaveArea";
 import * as S from "./styles";
 
