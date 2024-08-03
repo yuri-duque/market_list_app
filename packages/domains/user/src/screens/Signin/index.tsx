@@ -39,8 +39,9 @@ export const SigninScreen = () => {
       goToMarketList();
     } catch (error: any) {
       Toast.show({type: "error", text1: error.message});
+    } finally {
+      loading.setVisible(false);
     }
-    loading.setVisible(false);
   };
 
   const {values, errors, setFieldValue, handleSubmit, resetForm} = useFormik({

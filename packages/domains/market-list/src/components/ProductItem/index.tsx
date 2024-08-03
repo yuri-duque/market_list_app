@@ -25,8 +25,9 @@ export const ProductItem = ({
       refreshList();
     } catch (error: any) {
       Toast.show({type: "error", text1: "Error to delete product."});
+    } finally {
+      loading.setVisible(false);
     }
-    loading.setVisible(false);
   };
 
   const goToEditProduct = () => {

@@ -31,19 +31,25 @@ export const ListScreen = ({route, navigation}: Props) => {
 
   const init = async () => {
     loading.setVisible(true);
-    const newList = await listService.start();
-    setList(newList);
-    loading.setVisible(false);
+    try {
+      const newList = await listService.start();
+      setList(newList);
+    } finally {
+      loading.setVisible(false);
+    }
   };
 
   const onFinishList = async () => {
     loading.setVisible(true);
-    if (list && list.id) {
-      setList(null);
-      await listService.finish(list.id);
+    try {
+      if (list && list.id) {
+        setList(null);
+        await listService.finish(list.id);
+      }
+    } finally {
+      loading.setVisible(false);
+      init();
     }
-    loading.setVisible(false);
-    init();
   };
 
   return (

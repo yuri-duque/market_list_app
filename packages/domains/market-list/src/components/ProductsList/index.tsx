@@ -24,11 +24,13 @@ export const ProductList = ({listId, updateList}: ProductListProps) => {
   const getProducts = async () => {
     loading.setVisible(true);
 
-    const savedProducts = await productListService.getAll();
-    const sortedProducts = orderProducts(savedProducts);
-    setProducts(sortedProducts);
-
-    loading.setVisible(false);
+    try {
+      const savedProducts = await productListService.getAll();
+      const sortedProducts = orderProducts(savedProducts);
+      setProducts(sortedProducts);
+    } finally {
+      loading.setVisible(false);
+    }
   };
 
   const orderProducts = (products: Product[]) => {

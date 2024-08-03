@@ -38,7 +38,7 @@ export const ProductForm = ({
   }, [newProduct]);
 
   useEffect(() => {
-    if(product){
+    if (product) {
       setNewProduct(product);
       setValues({
         name: product.name,
@@ -101,8 +101,9 @@ export const ProductForm = ({
       onSubmit?.();
     } catch (error: any) {
       Toast.show({type: "", text1: "Error to add product."});
+    } finally {
+      loading.setVisible(false);
     }
-    loading.setVisible(false);
   };
 
   const {values, errors, setFieldValue, handleSubmit, setValues} = useFormik({

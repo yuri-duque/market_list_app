@@ -32,8 +32,9 @@ export const RetrievePassword = () => {
       navigation.navigate("Signin");
     } catch (error: any) {
       Toast.show({type: "error", text1: error.message});
+    } finally {
+      loading.setVisible(false);
     }
-    loading.setVisible(false);
   };
 
   const {values, errors, setFieldValue, handleSubmit} = useFormik({

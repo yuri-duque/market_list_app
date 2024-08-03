@@ -35,10 +35,10 @@ export const ProductItemAddButton = ({
         addedToCart: !product.addedToCart,
       });
       refreshList();
-
-      loading.setVisible(false);
     } catch (error) {
       Toast.show({type: "error", text1: "Error to add product on cart."});
+    } finally {
+      loading.setVisible(false);
     }
   };
 

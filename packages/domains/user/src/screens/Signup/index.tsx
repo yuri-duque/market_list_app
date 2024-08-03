@@ -55,8 +55,9 @@ export const SignupScreen = () => {
       navigation.navigate("Signin");
     } catch (error: any) {
       Toast.show({type: "error", text1: "Error to create user."});
+    } finally {
+      loading.setVisible(false);
     }
-    loading.setVisible(false);
   };
 
   const {values, errors, setFieldValue, handleSubmit} = useFormik({
