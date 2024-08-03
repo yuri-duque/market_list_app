@@ -15,11 +15,7 @@ export const AddProductScreen = ({route, navigation}: Props) => {
 
   return (
     <Page hasHeader>
-      <ProductForm
-        listId={listId}
-        formType={"save"}
-        onSubmit={onSubmit}
-      />
+      <ProductForm listId={listId} formType={"save"} onSubmit={onSubmit} />
     </Page>
   );
 };

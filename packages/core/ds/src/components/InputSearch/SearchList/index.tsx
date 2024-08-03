@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {FlatList} from "react-native";
+import {FlatList} from "react-native-gesture-handler";
 import {Divisor} from "../../Divisor";
 import * as S from "./styles";
 
@@ -64,8 +64,9 @@ const InputSearchList = <T,>({
   return (
     <S.Container maxHeight={maxHeight} style={{zIndex: 1}}>
       <FlatList
+        style={{maxHeight: 200}}
         data={filteredData}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={item => (item as any)[dataKey]}
         renderItem={({item, index}) => (
           <>
             <S.ListItemContainer onPress={() => handleSelectItem(item)}>

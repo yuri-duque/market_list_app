@@ -1,8 +1,17 @@
 import {useEffect, useState} from "react";
+import {FlatList} from "react-native";
 import Toast from "react-native-toast-message";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {Button, Input, QuantityInput, useLoading} from "@core/ds";
+import {
+  Button,
+  Divisor,
+  Input,
+  QuantityInput,
+  Spacing,
+  Typography,
+  useLoading,
+} from "@core/ds";
 import {maskValue} from "@core/ds/src/utils";
 import {ProductListService} from "../../services";
 import {Product} from "../../types";
@@ -47,6 +56,17 @@ export const ProductForm = ({
       });
     }
   }, [product]);
+
+  const handleButtonText = () => {
+    switch (formType) {
+      case "addToCart":
+        return "Add to cart";
+      case "save":
+        return "Save product";
+      case "edit":
+        return "Edit product";
+    }
+  };
 
   const setProductPrice = () => {
     if (newProduct) {
@@ -141,7 +161,7 @@ export const ProductForm = ({
       </S.InputsContainer>
 
       <Button
-        text="Add product"
+        text={handleButtonText()}
         onPress={handleSubmit}
         textProps={{weight: "bold"}}
       />

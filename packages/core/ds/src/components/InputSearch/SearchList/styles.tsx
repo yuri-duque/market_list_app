@@ -5,7 +5,7 @@ export const Container = styled.View<{
   maxHeight?: number;
 }>`
   position: absolute;
-  top: ${({top, theme}) => (top ? top : 54)}px;
+  top: ${({top}) => (top ? top : 54)}px;
   width: 100%;
 
   margin-top: ${({theme}) => theme.sizeVariations.XS}px;

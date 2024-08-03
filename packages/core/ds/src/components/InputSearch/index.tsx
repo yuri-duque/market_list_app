@@ -3,7 +3,7 @@ import {Input} from "../Input";
 import InputSearchList, {InputSearchListProps} from "./SearchList";
 import * as S from "./styles";
 
-type InputSearchProps<T> = Omit<InputSearchListProps<T>, "setShowList"> & {
+type InputSearchProps<T> = Omit<InputSearchListProps<T>, "startTouch"> & {
   onChange: (text: string) => void;
 };
 
