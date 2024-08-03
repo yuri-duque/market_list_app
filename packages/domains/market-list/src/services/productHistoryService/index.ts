@@ -24,7 +24,7 @@ export class ProductHistoryService {
     const products = await this.getLast3HistoryProducts(baseProductId);
     if (products) {
       const total = products.reduce((acc, product) => {
-        return acc + product.price;
+        return acc + (product.price / product.quantity);
       }, 0);
       return total / products.length;
     }
