@@ -35,7 +35,7 @@ export const Input = ({
   };
 
   return (
-    <View>
+    <View style={{zIndex: 1}}>
       <InputContainer variation={variation} disabled={disabled}>
         <InputSize size={size}>
           <S.InputContent>

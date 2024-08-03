@@ -23,6 +23,7 @@ export const getPlaceholderTextColor = (variation?: InputVariations) => {
 };
 
 export const InputContainer = styled.View<InputContainerProps>`
+  z-index: 1;
   border: 1px solid;
   background-color: ${({theme}) => theme.colors.white};
   border-radius: 8px;

@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {Text, View} from "react-native";
 import Toast from "react-native-toast-message";
 import {InputSearch, useLoading} from "@core/ds";
 import {BaseProductService} from "../../../services";
@@ -54,11 +55,19 @@ export const BaseProductSelect = ({
   };
 
   return (
-    <InputSearch
-      value={value}
-      onChange={onChange}
-      data={baseProducts}
-      onSelectItem={onSelectBaseProduct}
-    />
+    <>
+      <InputSearch<BaseProduct>
+        value={value}
+        onChange={onChange}
+        onSelectItem={onSelectBaseProduct}
+        dataKey={"name"}
+        data={baseProducts}
+        renderItem={item => (
+          <View>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />
+    </>
   );
 };
