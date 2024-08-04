@@ -5,12 +5,18 @@ export const InputContent = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 `;
 
 export const InputLabel = styled.View`
   flex: auto;
   flex-direction: column;
   gap: 4px;
+`;
+
+export const LabelContainer = styled.View`
+  position: absolute;
+  z-index: 1;
 `;
 
 export const Input = styled.TextInput`
@@ -20,10 +26,6 @@ export const Input = styled.TextInput`
   font-family: ${({theme}) => theme.fontFamily.roboto};
   color: ${({theme}) => theme.colors.dark};
   font-size: ${({theme}) => theme.fontSizes.S}px;
-`;
-
-export const LabelContainer = styled.View`
-  padding-left: 8px;
 `;
 
 export const ErrorContainer = styled.View`

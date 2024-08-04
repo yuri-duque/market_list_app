@@ -21,6 +21,7 @@ export const Input = ({
   type,
   mask,
   onTouchStart,
+  textAlignVertical,
   iconProps,
   returnKeyType,
   onSubmitEditing,
@@ -40,9 +41,11 @@ export const Input = ({
         <InputSize size={size}>
           <S.InputContent>
             <S.InputLabel>
-              {value && label && (
-                <Label text={label} required={required} size="S" />
-              )}
+              <S.LabelContainer>
+                {value && label && (
+                  <Label text={label} required={required} size="S" />
+                )}
+              </S.LabelContainer>
 
               <S.Input
                 value={value}
@@ -55,6 +58,7 @@ export const Input = ({
                 placeholderTextColor={getPlaceholderTextColor(variation)}
                 readOnly={disabled}
                 onTouchStart={onTouchStart}
+                textAlignVertical={textAlignVertical || "bottom"}
               />
             </S.InputLabel>
 

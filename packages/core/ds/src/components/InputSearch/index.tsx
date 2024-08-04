@@ -72,6 +72,7 @@ export const InputSearch = <T extends object>({
           iconSize: "L",
           color: "secondary",
         }}
+        textAlignVertical="center"
       />
 
       {value && showList && (
