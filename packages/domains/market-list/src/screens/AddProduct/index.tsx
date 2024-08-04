@@ -1,6 +1,7 @@
 import {Page} from "@core/ds";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {ProductForm} from "../../components";
+import {useListContext} from "../../context";
 import {MarketStackParamList} from "../../routes";
 
 interface Props
@@ -8,8 +9,10 @@ interface Props
 
 export const AddProductScreen = ({route, navigation}: Props) => {
   const {listId} = route.params;
+  const {getProducts} = useListContext();
 
   const onSubmit = () => {
+    getProducts();
     navigation.navigate("List");
   };
 

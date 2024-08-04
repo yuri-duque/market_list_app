@@ -1,17 +1,8 @@
 import {useEffect, useState} from "react";
-import {FlatList} from "react-native";
 import Toast from "react-native-toast-message";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {
-  Button,
-  Divisor,
-  Input,
-  QuantityInput,
-  Spacing,
-  Typography,
-  useLoading,
-} from "@core/ds";
+import {Button, Input, QuantityInput, useLoading} from "@core/ds";
 import {maskValue} from "@core/ds/src/utils";
 import {ProductListService} from "../../services";
 import {Product} from "../../types";
@@ -44,7 +35,7 @@ export const ProductForm = ({
 
   useEffect(() => {
     setProductPrice();
-  }, [newProduct]);
+  }, [product]);
 
   useEffect(() => {
     if (product) {
@@ -69,13 +60,13 @@ export const ProductForm = ({
   };
 
   const setProductPrice = () => {
-    if (newProduct) {
-      const price = (newProduct.price || newProduct.basePrice || 0) * 100;
+    if (product) {
+      const price = product.price || product.basePrice || 0;
 
       setValues({
-        name: newProduct.name,
-        price: maskValue((price || 0).toString(), "currency"),
-        quantity: newProduct.quantity || 1,
+        name: product.name,
+        price: (price || 0).toString(),
+        quantity: product.quantity || 1,
       });
     } else {
       setValues({
@@ -101,10 +92,15 @@ export const ProductForm = ({
   const handleSave = async () => {
     loading.setVisible(true);
     try {
+      const price =
+        typeof values.price === "string"
+          ? Number(values.price.replace(/R\$|\.| /g, "").replace(",", "."))
+          : Number(values.price);
+
       const data: Product = {
         ...newProduct,
         name: values.name,
-        price: Number(values.price.replace(/\D/g, "")) / 100,
+        price: price,
         quantity: Number(values.quantity),
       };
 

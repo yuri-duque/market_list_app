@@ -1,59 +1,19 @@
-import {useEffect, useState} from "react";
 import {ScrollView} from "react-native";
-import {Spacing, useLoading} from "@core/ds";
-import {ProductListService} from "../../services";
-import {Product} from "../../types";
+import {Spacing} from "@core/ds";
+import {useListContext} from "../../context/ListContext";
 import {ProductItem} from "../ProductItem";
-import {ProductListHeader} from "./Header";
 import * as S from "./styles";
 
-export type ProductListProps = {
-  listId: string;
-  updateList: number;
-};
-
-export const ProductList = ({listId, updateList}: ProductListProps) => {
-  const loading = useLoading();
-  const productListService = new ProductListService(listId);
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    getProducts();
-  }, [updateList]);
-
-  const getProducts = async () => {
-    loading.setVisible(true);
-
-    try {
-      const savedProducts = await productListService.getAll();
-      const sortedProducts = orderProducts(savedProducts);
-      setProducts(sortedProducts);
-    } finally {
-      loading.setVisible(false);
-    }
-  };
-
-  const orderProducts = (products: Product[]) => {
-    const productsOnCart = products.filter(product => product.addedToCart);
-    const productsOnList = products.filter(product => !product.addedToCart);
-
-    return [...productsOnList, ...productsOnCart];
-  };
+export const ProductList = () => {
+  const {products} = useListContext();
 
   return (
     <S.Container>
-      <ProductListHeader products={products} />
-
       <ScrollView>
         <S.ListContainer>
           <Spacing size="XS" />
           {products.map(product => (
-            <ProductItem
-              key={product.id}
-              listId={listId}
-              product={product}
-              refreshList={getProducts}
-            />
+            <ProductItem key={product.id} product={product} />
           ))}
           <Spacing size="XS" />
         </S.ListContainer>

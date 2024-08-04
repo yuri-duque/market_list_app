@@ -1,20 +1,16 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {Page, useLoading} from "@core/ds";
-import {BottomSheetModal} from "@gorhom/bottom-sheet";
 import {useIsFocused} from "@react-navigation/native";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {ProductList} from "../../components/ProductsList";
 import {ProductListActions} from "../../components/ProductsList/Actions";
-import {MarketStackParamList} from "../../routes";
+import {useListContext} from "../../context/ListContext";
 import {ListService} from "../../services";
 import {List} from "../../types";
 
-interface Props extends NativeStackScreenProps<MarketStackParamList, "List"> {}
-
-export const ListScreen = ({route, navigation}: Props) => {
-  const modalRef = useRef<BottomSheetModal>(null);
+export const ListScreen = () => {
   const loading = useLoading();
   const listService = new ListService();
+  const {setListId} = useListContext();
 
   const [list, setList] = useState<List | null>(null);
   const [updateList, setUpdateList] = useState<number>(0);
@@ -33,6 +29,7 @@ export const ListScreen = ({route, navigation}: Props) => {
     loading.setVisible(true);
     try {
       const newList = await listService.start();
+      setListId(newList.id as string);
       setList(newList);
     } finally {
       loading.setVisible(false);
@@ -56,7 +53,7 @@ export const ListScreen = ({route, navigation}: Props) => {
     <Page noPadding>
       {list && (
         <>
-          <ProductList listId={list.id as string} updateList={updateList} />
+          <ProductList />
           <ProductListActions
             listId={list.id as string}
             onFinishList={onFinishList}

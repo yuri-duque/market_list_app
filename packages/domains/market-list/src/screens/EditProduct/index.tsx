@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {Page, useLoading} from "@core/ds";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {ProductForm} from "../../components";
+import {useListContext} from "../../context";
 import {MarketStackParamList} from "../../routes";
 import {ProductListService} from "../../services";
 import {Product} from "../../types";
@@ -13,6 +14,7 @@ export const EditProductScreen = ({route, navigation}: Props) => {
   const loading = useLoading();
   const {listId, productId} = route.params;
   const productService = new ProductListService(listId);
+  const {getProducts} = useListContext();
 
   const [product, setProduct] = useState<Product>();
 
@@ -33,6 +35,7 @@ export const EditProductScreen = ({route, navigation}: Props) => {
   };
 
   const onSubmit = () => {
+    getProducts();
     navigation.navigate("List");
   };
 

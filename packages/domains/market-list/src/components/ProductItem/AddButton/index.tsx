@@ -1,40 +1,42 @@
 import {useRef} from "react";
+import {Keyboard} from "react-native";
 import Toast from "react-native-toast-message";
 import {Icon, Modal, Spacing, useLoading} from "@core/ds";
 import {BottomSheetModal} from "@gorhom/bottom-sheet";
+import {useListContext} from "../../../context";
 import {ProductListService} from "../../../services";
+import {Product} from "../../../types";
 import {ProductForm} from "../../ProductForm";
-import {ProductItemProps} from "../types";
 import * as S from "./styles";
 
-export const ProductItemAddButton = ({
-  listId,
-  product,
-  refreshList,
-}: ProductItemProps) => {
+type ProductItemAddButtonProps = {
+  product: Product;
+};
+
+export const ProductItemAddButton = ({product}: ProductItemAddButtonProps) => {
   const modalRef = useRef<BottomSheetModal>(null);
   const loading = useLoading();
-  const productListService = new ProductListService(listId);
+  const {listId, getProducts} = useListContext();
 
   const openModal = () => {
     modalRef.current?.present();
   };
 
   const onCloseModal = () => {
-    modalRef.current?.forceClose();
-    modalRef.current?.dismiss();
-    refreshList();
+    Keyboard.dismiss();
+    modalRef.current?.close();
+    getProducts();
   };
 
   const onRemoveProductFromCart = async () => {
+    loading.setVisible(true);
     try {
-      loading.setVisible(true);
-
+      const productListService = new ProductListService(listId);
       await productListService.update({
         ...product,
         addedToCart: !product.addedToCart,
       });
-      refreshList();
+      getProducts();
     } catch (error) {
       Toast.show({type: "error", text1: "Error to add product on cart."});
     } finally {
