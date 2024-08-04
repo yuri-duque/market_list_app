@@ -4,14 +4,32 @@ const mapMask: {
   [key: string]: (value: string) => string;
 } = {
   currency: value => {
-    let cleaned = value.replace(/\D/g, "");
+    let num: number = 0;
+    if (typeof value === "string") {
+      if (value.includes("R$")) {
+        value = value
+          .replace(/R\$|\.| /g, "")
+          .replace(",", ".")
+          .trim();
+      }
 
-    const num = Number(cleaned) / 100;
+      const decimalLenght = value.split(".")[1]?.length;
+
+      num = Number(value);
+
+      if (decimalLenght > 2) {
+        num = num * 10;
+      } else if (decimalLenght < 2) {
+        num = num / 10;
+      }
+    } else {
+      num = Number(value);
+    }
+
     const result = num.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
-
     return result;
   },
 };
