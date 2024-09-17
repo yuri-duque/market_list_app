@@ -5,8 +5,10 @@ const mapMask: {
 } = {
   currency: value => {
     let num: number = 0;
+    let hasR$ = false;
     if (typeof value === "string") {
       if (value.includes("R$")) {
+        hasR$ = true;
         value = value
           .replace(/R\$|\.| /g, "")
           .replace(",", ".")
@@ -19,7 +21,7 @@ const mapMask: {
 
       if (decimalLenght > 2) {
         num = num * 10;
-      } else if (decimalLenght < 2) {
+      } else if (decimalLenght < 2 && hasR$) {
         num = num / 10;
       }
     } else {

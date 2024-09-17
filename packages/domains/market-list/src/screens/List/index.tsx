@@ -10,9 +10,9 @@ import {List} from "../../types";
 export const ListScreen = () => {
   const loading = useLoading();
   const listService = new ListService();
-  const {setListId} = useListContext();
+  const {setListId, getProducts} = useListContext();
 
-  const [list, setList] = useState<List | null>(null);
+  const [list, setList] = useState<List | undefined>();
   const [updateList, setUpdateList] = useState<number>(0);
 
   useEffect(() => {
@@ -39,10 +39,11 @@ export const ListScreen = () => {
   const onFinishList = async () => {
     loading.setVisible(true);
     try {
+      setList(undefined);
       if (list && list.id) {
-        setList(null);
         await listService.finish(list.id);
       }
+      getProducts();
     } finally {
       loading.setVisible(false);
       init();

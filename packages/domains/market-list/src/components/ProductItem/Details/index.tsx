@@ -26,7 +26,11 @@ export const ProductItemDetails = ({product}: ProductItemDetailsProps) => {
 
       <S.PriceContainer>
         <Typography
-          text={getPriceFormated(product.basePrice)}
+          text={getPriceFormated(
+            product.price && product.price > 0
+              ? product.price
+              : product.basePrice,
+          )}
           size={product.addedToCart ? "XS" : "M"}
           color={"secondary"}
           decotarion={product.addedToCart ? "line-through" : "none"}
