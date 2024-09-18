@@ -1,7 +1,7 @@
 import {useCallback, useEffect} from "react";
 import {Auth} from "@core/integration";
 import {useFocusEffect} from "@react-navigation/native";
-import background from "../../../assets/images/background.png";
+import background from "../../../assets/images/background.jpg";
 import {useAppStack} from "../../routes/stack";
 import * as S from "./styles";
 
