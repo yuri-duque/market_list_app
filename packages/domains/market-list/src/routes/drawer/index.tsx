@@ -1,15 +1,8 @@
-import {Button, View} from "react-native";
+import {Button, Text, View} from "react-native";
 import {createDrawerNavigator} from "@react-navigation/drawer";
-import {NavigationContainer, useNavigation} from "@react-navigation/native";
-
-function HomeScreen({}) {
-  const navigation = useNavigation();
-  return (
-    <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-      <Button onPress={() => {}} title="Go to notifications" />
-    </View>
-  );
-}
+import {MarketListTotalValue} from "../../components/MarketListTotalValue";
+import {ListProvider} from "../../context";
+import {MarketStack} from "../stack";
 
 function NotificationsScreen({}) {
   return (
@@ -21,18 +14,27 @@ function NotificationsScreen({}) {
 
 type RootDrawerParamList = {
   Home: undefined;
+  "Base products": undefined;
+  Profile: undefined;
   Settings: undefined;
 };
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
-const DrawerNavigator = () => {
+export const DrawerNavigator = () => {
   return (
-    <NavigationContainer>
+    <ListProvider>
       <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen
+          name="Home"
+          component={MarketStack}
+          options={{
+            headerRight: () => <MarketListTotalValue />,
+          }}
+        />
+        <Drawer.Screen name="Base products" component={NotificationsScreen} />
+        <Drawer.Screen name="Profile" component={NotificationsScreen} />
         <Drawer.Screen name="Settings" component={NotificationsScreen} />
       </Drawer.Navigator>
-    </NavigationContainer>
+    </ListProvider>
   );
 };
-export default DrawerNavigator;

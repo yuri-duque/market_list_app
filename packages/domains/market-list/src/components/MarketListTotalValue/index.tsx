@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
+import {View} from "react-native";
 import {Spacing, Typography} from "@core/ds";
 import {useListContext} from "../../context/ListContext";
 import {formatPrice} from "../../utils";
-import * as S from "./styles";
 
-export const ListHeader = () => {
+export const MarketListTotalValue = () => {
   const {products} = useListContext();
   const [total, setTotal] = useState<string>();
 
@@ -25,13 +25,20 @@ export const ListHeader = () => {
     setTotal(price);
   };
 
-  if (!total) return <></>;
+  if (!total) return <View />;
 
   return (
-    <S.HeaderList>
+    <View
+      style={{
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingRight: 12,
+      }}>
       <Typography text="Total:" color="secondary" />
       <Spacing size="XS" />
       <Typography text={total} color="secondary" weight="bold" />
-    </S.HeaderList>
+    </View>
   );
 };

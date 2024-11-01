@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {View} from "react-native";
 import {Page, useLoading} from "@core/ds";
 import {useIsFocused} from "@react-navigation/native";
 import {ProductList} from "../../components/ProductsList";
@@ -53,13 +54,13 @@ export const ListScreen = () => {
   return (
     <Page noPadding>
       {list && (
-        <>
+        <View>
           <ProductList />
           <ProductListActions
             listId={list.id as string}
             onFinishList={onFinishList}
           />
-        </>
+        </View>
       )}
     </Page>
   );

@@ -1,4 +1,4 @@
-import {MarketStack} from "@domains/market-list";
+import {DrawerNavigator} from "@domains/market-list";
 import {AuthStack} from "@domains/user";
 import {useNavigation} from "@react-navigation/native";
 import {
@@ -28,7 +28,7 @@ export const StackRouter = () => {
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Auth" component={AuthStack as any} />
-      <Stack.Screen name="MarketList" component={MarketStack as any} />
+      <Stack.Screen name="MarketList" component={DrawerNavigator as any} />
     </Stack.Navigator>
   );
 };
